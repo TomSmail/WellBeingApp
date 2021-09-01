@@ -6,6 +6,8 @@ import csv
 from csv import DictWriter
 import datetime
 import pandas as pd
+import time
+import text2emotion as emotion
 
 
 
@@ -24,13 +26,12 @@ def getPostLikes(bot):
     media = bot.get_your_medias(as_dict=False)
     dictionary = bot.get_your_medias(as_dict=True)
     print (media)
-    print (dictionary["taken_at"])
     posts = []
     choice = input("Do you want the list of like users? y/n :")
-    for i in range(4):
+    for i in range(len(media)):
         likeUserIDs = bot.get_media_likers(media[i])
         comments = bot.get_media_comments(media[i], only_text = True)
-        now = bot.get_your_medias(as_dict=True)
+        now = bot.get_your_medias(as_dict=True)[i]["taken_at"]
         print("This is the number of likes", likeUserIDs)
         if choice == "y":
             for j in range(len(likeUserIDs)):
@@ -66,23 +67,32 @@ def CSVTEST(posts):
     df = pd.read_csv("postFile.csv")
     print(df)
     newposts = []
-    post1 = posts[0]
-    print("post1", post1)
-    #for post in posts:
-    print("post1 ID", post1["ID"])
     listOfID = df.ID.to_list()
-    print("df ID", df.ID)
-    print("df list ID", listOfID)
     for i in range(len(posts)):
-        if posts[i]["ID"] not in listOfID:
+        if posts[i]["TIME"] >= time.time() + 86400 and posts[i]["ID"] not in listOfID: # checks to see if a post is more than a day old and not in the dataframe already
             newposts.append(posts[i])
     print("newpost", newposts)
     df.append(newposts)
     df2 = pd.DataFrame(posts)
     print(df2)
     df2.to_csv("postFile.csv")
-    #for post in df:
-        #if post[1] not in df.ID:
+    return newposts
+
+def commentReading():
+    df = pd.read_csv("postFile.csv")
+    listOfComments = df.COMMENTS.to_list()
+    print(listOfComments)
+    commentsForReading = []
+    for row in range(len(df.index)):
+        print(df["TIME"][row])
+        print(time.time() +172800)
+        if time.time() - 172800 <= df["TIME"][row]: # if a post is less that 2 days old add the comments to a list (commentsForReading)
+            commentsForReading.append(listOfComments[row])
+    print(commentsForReading)
+    for comment in range(len(commentsForReading)):
+        print(emotion.get_emotion(commentsForReading[comment]))
+    #if a post is more than a day old but less that 2 days old then we want to look at its comments
+
 
             
     
@@ -94,6 +104,7 @@ def main():
     bot = setupCheckCookies()
     posts = getPostLikes(bot)
     CSVTEST(posts)
+    commentReading()
 
 if __name__ == '__main__':
     print("----Running Programn----")
