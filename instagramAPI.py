@@ -26,7 +26,7 @@ def getPostLikes(bot):
     print (media)
     print (dictionary["taken_at"])
     posts = []
-    choice = input("Do you want the list of like users? y/n:")
+    choice = input("Do you want the list of like users? y/n :")
     for i in range(4):
         likeUserIDs = bot.get_media_likers(media[i])
         comments = bot.get_media_comments(media[i], only_text = True)
