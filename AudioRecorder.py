@@ -3,6 +3,7 @@ import wave
 import pickle
 import EmotionRecognition 
 from xgboost import XGBRegressor
+import numpy as np
 
 def recordClip():
     chunk = 1024  # Record in chunks of 1024 samples
@@ -50,7 +51,7 @@ def recordClip():
 def testClipEmotions():
     model = pickle.load(open("result/VoiceEmotion.model", "rb"))
     result = EmotionRecognition.getFeatures("output.wav")
-    results = model.predict(result)[0]
+    results = (model.predict([result])[0])
     print("result:", results)
 
 
