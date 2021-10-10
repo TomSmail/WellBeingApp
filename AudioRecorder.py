@@ -51,12 +51,13 @@ def recordClip():
 def testClipEmotions():
     model = pickle.load(open("result/VoiceEmotion.model", "rb"))
     result = EmotionRecognition.getFeatures("output.wav")
-    results = (model.predict([result])[0])
+    results = (model.predict(result)[0])
     print("result:", results)
 
 
 
 def main():
+    recordClip()
     testClipEmotions()
 
 if __name__ == '__main__':

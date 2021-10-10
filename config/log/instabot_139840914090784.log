@@ -1,0 +1,52 @@
+2021-10-10 18:29:55,620 - instabot version: 0.117.0 (bot) - INFO - Instabot version: 0.117.0 Started
+2021-10-10 18:29:55,621 - instabot version: 0.117.0 (bot) - DEBUG - Bot imported from /home/tomsmail/.local/lib/python3.9/site-packages/instabot/bot/bot.py
+2021-10-10 18:29:55,667 - instabot version: 0.117.0 (api_login) - INFO - Not yet logged in starting: PRE-LOGIN FLOW!
+2021-10-10 18:29:55,992 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: accounts/get_prefill_candidates/ returned response: <Response [200]>
+2021-10-10 18:29:56,213 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qe/sync/ returned response: <Response [200]>
+2021-10-10 18:29:56,418 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: launcher/sync/ returned response: <Response [200]>
+2021-10-10 18:29:56,638 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: accounts/contact_point_prefill/ returned response: <Response [200]>
+2021-10-10 18:29:58,568 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: accounts/login/ returned response: <Response [200]>
+2021-10-10 18:29:58,569 - instabot version: 0.117.0 (api) - INFO - Logged-in successfully as 'tomsmailspythonbot'!
+2021-10-10 18:29:58,570 - instabot version: 0.117.0 (api_login) - INFO - LOGIN FLOW! Just logged-in: True
+2021-10-10 18:29:58,850 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qe/sync/ returned response: <Response [200]>
+2021-10-10 18:29:59,060 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: launcher/sync/ returned response: <Response [200]>
+2021-10-10 18:29:59,371 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: zr/token/result/?device_id=android-07458c657a2b5274&token_hash=&custom_device_id=android-07458c657a2b5274&fetch_reason=token_expired returned response: <Response [200]>
+2021-10-10 18:29:59,728 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: multiple_accounts/get_account_family/ returned response: <Response [200]>
+2021-10-10 18:29:59,943 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qe/sync/ returned response: <Response [200]>
+2021-10-10 18:30:00,393 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: igtv/browse_feed/?prefetch=1 returned response: <Response [200]>
+2021-10-10 18:30:00,618 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: creatives/ar_class/ returned response: <Response [200]>
+2021-10-10 18:30:01,153 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: feed/reels_tray/ returned response: <Response [200]>
+2021-10-10 18:30:02,447 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: feed/timeline/ returned response: <Response [200]>
+2021-10-10 18:30:02,637 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/blocked/ returned response: <Response [200]>
+2021-10-10 18:30:03,483 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: news/inbox/ returned response: <Response [200]>
+2021-10-10 18:30:03,697 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: loom/fetch_config/ returned response: <Response [200]>
+2021-10-10 18:30:03,985 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: scores/bootstrap/users/?surfaces=["autocomplete_user_list","coefficient_besties_list_ranking","coefficient_rank_recipient_user_suggestion","coefficient_ios_section_test_bootstrap_ranking","coefficient_direct_recipients_ranking_variant_2"] returned response: <Response [200]>
+2021-10-10 18:30:04,226 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: business/eligibility/get_monetization_products_eligibility_data/?product_types=branded_content returned response: <Response [200]>
+2021-10-10 18:30:04,453 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: business/branded_content/should_require_professional_account/ returned response: <Response [200]>
+2021-10-10 18:30:04,814 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: linked_accounts/get_linkage_status/ returned response: <Response [200]>
+2021-10-10 18:30:05,178 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: locations/request_country/ returned response: <Response [200]>
+2021-10-10 18:30:05,393 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: qp/get_cooldowns/?signed_body=signed_body=4b9c516a5410a3bc128e09c6104a7f042146b9c2023870560c63a43a7f66781c.4&ig_sig_key_version=4&ig_sig_key_version=4 returned response: <Response [200]>
+2021-10-10 18:30:05,605 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: users/arlink_download_info/?version_override=2.2.1 returned response: <Response [200]>
+2021-10-10 18:30:06,578 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: users/48968267266/info/ returned response: <Response [200]>
+2021-10-10 18:30:06,962 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: direct_v2/get_presence/ returned response: <Response [200]>
+2021-10-10 18:30:07,482 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: direct_v2/inbox/?visual_message_return_type=unseen&thread_message_limit=10&persistentBadging=true&limit=20 returned response: <Response [200]>
+2021-10-10 18:30:07,725 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: direct_v2/inbox/?visual_message_return_type=unseen&persistentBadging=true&limit=0 returned response: <Response [200]>
+2021-10-10 18:30:09,211 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: discover/topical_explore/?is_prefetch=true&omit_cover_media=true&use_sectional_payload=true&timezone_offset=0&session_id=19f367fd-8fd1-4cec-99af-4b47ce478543&include_fixed_destinations=true returned response: <Response [200]>
+2021-10-10 18:30:09,458 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: notifications/badge/ returned response: <Response [200]>
+2021-10-10 18:30:10,139 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qp/batch_fetch/ returned response: <Response [200]>
+2021-10-10 18:30:10,140 - instabot version: 0.117.0 (bot_checkpoint) - DEBUG - Loading Checkpoint file from: /home/tomsmail/Documents/0SCHOOL/A-Level/Comp Sci/NEA/Code/config/tomsmailspythonbot.checkpoint
+2021-10-10 18:30:10,556 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: feed/user/48968267266/?max_id=&min_timestamp=None&rank_token=48968267266_3d3c7e82-a909-4037-849b-543a431eac2b&ranked_content=true returned response: <Response [200]>
+2021-10-10 18:30:16,705 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/2681517545006016836_48968267266/likers/? returned response: <Response [200]>
+2021-10-10 18:30:16,977 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/2681517545006016836_48968267266/comments/ returned response: <Response [200]>
+2021-10-10 18:30:17,362 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: feed/user/48968267266/?max_id=&min_timestamp=None&rank_token=48968267266_3d3c7e82-a909-4037-849b-543a431eac2b&ranked_content=true returned response: <Response [200]>
+2021-10-10 18:30:17,674 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/2619165959470345559_48968267266/likers/? returned response: <Response [200]>
+2021-10-10 18:30:18,028 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/2619165959470345559_48968267266/comments/ returned response: <Response [200]>
+2021-10-10 18:30:18,768 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: feed/user/48968267266/?max_id=&min_timestamp=None&rank_token=48968267266_3d3c7e82-a909-4037-849b-543a431eac2b&ranked_content=true returned response: <Response [200]>
+2021-10-10 18:30:19,089 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/2619165839655721585_48968267266/likers/? returned response: <Response [200]>
+2021-10-10 18:30:19,451 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/2619165839655721585_48968267266/comments/ returned response: <Response [200]>
+2021-10-10 18:30:19,836 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: feed/user/48968267266/?max_id=&min_timestamp=None&rank_token=48968267266_3d3c7e82-a909-4037-849b-543a431eac2b&ranked_content=true returned response: <Response [200]>
+2021-10-10 18:30:20,150 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/2619035903389342654_48968267266/likers/? returned response: <Response [200]>
+2021-10-10 18:30:20,453 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: media/2619035903389342654_48968267266/comments/ returned response: <Response [200]>
+2021-10-10 18:30:20,828 - instabot version: 0.117.0 (api) - DEBUG - GET to endpoint: feed/user/48968267266/?max_id=&min_timestamp=None&rank_token=48968267266_3d3c7e82-a909-4037-849b-543a431eac2b&ranked_content=true returned response: <Response [200]>
+2021-10-10 18:30:21,462 - instabot version: 0.117.0 (bot_checkpoint) - DEBUG - Saving Checkpoint file to: /home/tomsmail/Documents/0SCHOOL/A-Level/Comp Sci/NEA/Code/config/tomsmailspythonbot.checkpoint
+2021-10-10 18:30:21,463 - instabot version: 0.117.0 (bot) - INFO - Total requests: 683

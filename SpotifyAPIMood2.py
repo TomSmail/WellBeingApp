@@ -44,8 +44,17 @@ def alterMood(avValence):
     
     
 
+def spotifyReadFull():
+    results = getRecentTracks()
+    avValence = getFeatures(results)
+    alterMood(avValence)
+    return avValence
+
+
+
 def main():
     results = getRecentTracks()
+    printRecentTracks(results)
     avValence = getFeatures(results)
     alterMood(avValence)
 

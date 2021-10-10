@@ -1,6 +1,4 @@
-,ID,TIME,LIKE_COUNT,COMMENTS
-0,2653086892858077535_48968267266,1630492625,1,"['Love me some of that Calvin and Hobbes drip', 'test comment 2', 'test comment 1']"
-1,2619166064537682172_48968267266,1626448947,4,"[""Ok if you haven't read every Calvin and Hobbes book then ur a noob""]"
-2,2619165959470345559_48968267266,1626448934,3,"['test mean emoji 😡🤬🤬😡😡😠', 'I dont like you', 'you smell']"
-3,2619165839655721585_48968267266,1626448920,3,"['your awesome', 'I love this', 'this is so cool']"
-4,2619035903389342654_48968267266,1626433431,6,[]
+,Unnamed: 0,ID,TIME,LIKE_COUNT,COMMENTS
+0,0,2619165959470345559_48968267266,1626448934,3,"['test mean emoji 😡🤬🤬😡😡😠', 'I dont like you', 'you smell']"
+1,1,2619165839655721585_48968267266,1626448920,3,"['your awesome', 'I love this', 'this is so cool']"
+2,2,2619035903389342654_48968267266,1626433431,6,[]

@@ -1,3 +1,4 @@
+from re import T
 from instabot import Bot
 from os import remove
 import instaloader
@@ -24,7 +25,6 @@ def setupCheckCookies():
 
 def getPostLikes(bot):
     media = bot.get_your_medias(as_dict=False)
-    dictionary = bot.get_your_medias(as_dict=True)
     print (media)
     posts = []
     choice = input("Do you want the list of like users? y/n :")
@@ -43,7 +43,7 @@ def getPostLikes(bot):
 
 
 
-def writeNewPostToCSV(posts):
+"""def writeNewPostToCSV(posts): # THIS FUNCTION IS NOT CURRENTLY IN USE
     file = open('postFile.csv', 'w')
     originalFile = open('postFile.csv', "r")
     reader = csv.reader(originalFile)
@@ -56,33 +56,34 @@ def writeNewPostToCSV(posts):
         for post in posts:
             if post["ID"] not in f:
                 newposts.append(post)
-    print(newposts)
+    print(newposts)"""
 """dictWriter = DictWriter(fileObject, fieldnames = fieldNames)
 if posts[row][0] not in originalFile: #or (posts[0] in file and posts[1] < yesterday):
     dictWriter.writerow(posts[row])
 else:
     print("error")"""
 
-def CSVTEST(posts):
+def writeNewPostToCSV(posts):
     df = pd.read_csv("postFile.csv")
     print(df)
     newposts = []
     listOfID = df.ID.to_list()
     for i in range(len(posts)):
-        if posts[i]["TIME"] >= time.time() + 86400 and posts[i]["ID"] not in listOfID: # checks to see if a post is more than a day old and not in the dataframe already
+        if posts[i]["TIME"] >= time.time() - 86400 and posts[i]["ID"] not in listOfID: # checks to see if a post is more than a day old and not in the dataframe already
             newposts.append(posts[i])
     print("newpost", newposts)
     df.append(newposts)
-    df2 = pd.DataFrame(posts)
-    print(df2)
-    df2.to_csv("postFile.csv")
+    df.to_csv("postFile.csv")
     return newposts
+
+
 
 def commentReading():
     df = pd.read_csv("postFile.csv")
     listOfComments = df.COMMENTS.to_list()
     print(listOfComments)
     commentsForReading = []
+    totalEmotion = 0
     for row in range(len(df.index)):
         print(df["TIME"][row])
         print(time.time() +172800)
@@ -90,21 +91,38 @@ def commentReading():
             commentsForReading.append(listOfComments[row])
     print(commentsForReading)
     for comment in range(len(commentsForReading)):
-        print(emotion.get_emotion(commentsForReading[comment]))
-    #if a post is more than a day old but less that 2 days old then we want to look at its comments
+        commentEmotion = emotion.get_emotion(commentsForReading[comment])
+        print("emotion", commentEmotion)
+        totalEmotion = totalEmotion + commentEmotion["Happy"] + commentEmotion["Surprise"] - commentEmotion["Angry"] - commentEmotion["Fear"] - commentEmotion["Sad"]
+    print(totalEmotion)
+    return totalEmotion #if a post is more than a day old but less that 2 days old then we want to look at its comments
 
 
-            
-    
-            
-    
 
- 
+def likesReading():
+    df1 = pd.read_csv("postFile.csv")
+    df2 = pd.read_csv("newPostFile.csv")
+    listOfLikes = df1.LIKES.to_list()
+    averageLikes = (sum(listOfLikes)/ len(listOfLikes))
+    likesEmotion = 0
+    for i in range(len(df1)):
+        if df1[i]["TIME"] <= time.time() - 86400: # checks to see if a post is more than a day old and not in the dataframe already
+            likes = df1[i]["LIKE_COUNT"]
+            likesEmotion = likesEmotion + (likes - averageLikes)
+    return likesEmotion
+
+
+def refreshPosts():
+    bot = setupCheckCookies()
+    posts = getPostLikes(bot)
+    writeNewPostToCSV(posts)
+
+
+
 def main():
     bot = setupCheckCookies()
     posts = getPostLikes(bot)
-    CSVTEST(posts)
-    commentReading()
+    writeNewPostToCSV(posts)
 
 if __name__ == '__main__':
     print("----Running Programn----")

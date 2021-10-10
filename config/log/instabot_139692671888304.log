@@ -1,0 +1,32 @@
+2021-10-10 14:24:17,578 - instabot version: 0.117.0 (bot) - INFO - Instabot version: 0.117.0 Started
+2021-10-10 14:24:17,578 - instabot version: 0.117.0 (bot) - DEBUG - Bot imported from /home/tomsmail/.local/lib/python3.9/site-packages/instabot/bot/bot.py
+2021-10-10 14:24:17,629 - instabot version: 0.117.0 (api_login) - INFO - Not yet logged in starting: PRE-LOGIN FLOW!
+2021-10-10 14:24:17,842 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: accounts/get_prefill_candidates/ returned response: <Response [200]>
+2021-10-10 14:24:17,996 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qe/sync/ returned response: <Response [429]>
+2021-10-10 14:24:17,996 - instabot version: 0.117.0 (api) - DEBUG - Responsecode indicates error; response content: b''
+2021-10-10 14:24:17,996 - instabot version: 0.117.0 (api) - ERROR - Request returns 429 error!
+2021-10-10 14:24:17,997 - instabot version: 0.117.0 (api) - ERROR - Error checking for `feedback_required`, response text is not JSON
+2021-10-10 14:24:17,997 - instabot version: 0.117.0 (api) - INFO - Full Response: <Response [429]>
+2021-10-10 14:24:17,998 - instabot version: 0.117.0 (api) - INFO - Response Text: 
+2021-10-10 14:24:17,998 - instabot version: 0.117.0 (api) - WARNING - That means 'too many requests'. I'll go to sleep for 5 minutes.
+2021-10-10 14:29:18,243 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qe/sync/ returned response: <Response [429]>
+2021-10-10 14:29:18,243 - instabot version: 0.117.0 (api) - DEBUG - Responsecode indicates error; response content: b''
+2021-10-10 14:29:18,243 - instabot version: 0.117.0 (api) - ERROR - Request returns 429 error!
+2021-10-10 14:29:18,243 - instabot version: 0.117.0 (api) - ERROR - Error checking for `feedback_required`, response text is not JSON
+2021-10-10 14:29:18,243 - instabot version: 0.117.0 (api) - INFO - Full Response: <Response [429]>
+2021-10-10 14:29:18,243 - instabot version: 0.117.0 (api) - INFO - Response Text: 
+2021-10-10 14:29:18,243 - instabot version: 0.117.0 (api) - WARNING - That means 'too many requests'. I'll go to sleep for 10 minutes.
+2021-10-10 14:39:18,513 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qe/sync/ returned response: <Response [429]>
+2021-10-10 14:39:18,513 - instabot version: 0.117.0 (api) - DEBUG - Responsecode indicates error; response content: b''
+2021-10-10 14:39:18,514 - instabot version: 0.117.0 (api) - ERROR - Request returns 429 error!
+2021-10-10 14:39:18,514 - instabot version: 0.117.0 (api) - ERROR - Error checking for `feedback_required`, response text is not JSON
+2021-10-10 14:39:18,515 - instabot version: 0.117.0 (api) - INFO - Full Response: <Response [429]>
+2021-10-10 14:39:18,515 - instabot version: 0.117.0 (api) - INFO - Response Text: 
+2021-10-10 14:39:18,515 - instabot version: 0.117.0 (api) - WARNING - That means 'too many requests'. I'll go to sleep for 15 minutes.
+2021-10-10 14:54:18,795 - instabot version: 0.117.0 (api) - DEBUG - POST to endpoint: qe/sync/ returned response: <Response [429]>
+2021-10-10 14:54:18,796 - instabot version: 0.117.0 (api) - DEBUG - Responsecode indicates error; response content: b''
+2021-10-10 14:54:18,796 - instabot version: 0.117.0 (api) - ERROR - Request returns 429 error!
+2021-10-10 14:54:18,796 - instabot version: 0.117.0 (api) - ERROR - Error checking for `feedback_required`, response text is not JSON
+2021-10-10 14:54:18,797 - instabot version: 0.117.0 (api) - INFO - Full Response: <Response [429]>
+2021-10-10 14:54:18,797 - instabot version: 0.117.0 (api) - INFO - Response Text: 
+2021-10-10 14:54:19,799 - instabot version: 0.117.0 (api) - ERROR - Since we hit 15 minutes of time outs, we have to restart. Removing session and cookies. Please relogin.

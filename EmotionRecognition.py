@@ -50,7 +50,7 @@ def load_data(test_size=0.1):
 
 
 
-def XGBoostModel(splitData): # still need to optimise this as it is currently un - optimised. 
+def XGBoostModelTrain(splitData): # still need to optimise this as it is currently un - optimised. 
     X_train, X_valid, y_train, y_valid = splitData 
     model = XGBRegressor(random_state = 1, n_estimators=500, learning_rate=0.05)
     model.fit(X_train, y_train, early_stopping_rounds=5, eval_set=[(X_valid, y_valid)],verbose=False)
@@ -58,11 +58,29 @@ def XGBoostModel(splitData): # still need to optimise this as it is currently un
     print("mean squared error:", mean_squared_error(y_valid, preds_valid, squared=False))
     pickle.dump(model, open("result/VoiceEmotion.model", "wb"))
 
-    
+
+
+def encodeResults(file_name):
+    features = getFeatures(file_name) # extract speech features
+    print(features)
+    splitFeatures =[features[i:i + 1] for i in range(0, len(features), 1)]
+    modelPrediction(np.array(splitFeatures))
+
+
+
+def modelPrediction(voiceData):
+    model = pickle.load(open("result/VoiceEmotion.model", 'rb'))
+    print(model)
+    print(f"This is the prediction for the recording: {model.predict(voiceData)}, taken from voiceData.")
+
+
+
+
 
 def main():
-    splitData = load_data(test_size=0.25)
-    XGBoostModel(splitData)
+    encodeResults("03-01-01-01-01-01-01.wav")
+    """splitData = load_data(test_size=0.25)
+    XGBoostModelTrain(splitData)"""
 
 
 
