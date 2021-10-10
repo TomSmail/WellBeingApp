@@ -72,8 +72,12 @@ def writeNewPostToCSV(posts):
         if posts[i]["TIME"] >= time.time() - 86400 and posts[i]["ID"] not in listOfID: # checks to see if a post is more than a day old and not in the dataframe already
             newposts.append(posts[i])
     print("newpost", newposts)
-    df.append(newposts)
-    df.to_csv("postFile.csv")
+    with open("postFile.csv", 'w', newline='') as write:
+        fieldNames = ["ID", "TIME", "LIKE_COUNT", "COMMENTS"]
+        rowWriter = DictWriter(write, fieldNames)
+        rowWriter.writeheader()
+        for i in range(len(newposts)):
+            rowWriter.writerow(newposts[i])
     return newposts
 
 

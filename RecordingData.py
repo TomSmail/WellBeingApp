@@ -4,11 +4,17 @@ import time
 import pandas as pd
 
 def gatherData():
-    ia1.refreshPosts() # need to refresh the post file to check for new posts. 
-    newRow = {"INSTAGRAM_l": ia1.likesReading, "INSTAGRAM_c": ia1.commentReading, "SPOTIFY_v": sam2.spotifyReadFull, "VOICE_e": "", "USER_i": "" }
+    ia1.refreshPosts() # need to refresh the post file to check for new posts as the two insta functions dont do this themselves. 
+    newRow = {"TIME": time.time() ,"INSTAGRAM_l": ia1.likesReading, "INSTAGRAM_c": ia1.commentReading, "SPOTIFY_v": sam2.spotifyReadFull, "VOICE_e": "", "USER_i": "" }
     
             
+def main():
+    gatherData()
 
+
+if __name__ == '__main__':
+    print("Running Programn")
+    main()
 
 
 # I want to be able to ask for how a user is feeling then insert this value along with the values from the different APIs into a new row of a CSV file. It should take the time taken for the test to be run as its primary key
