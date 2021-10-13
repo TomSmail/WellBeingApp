@@ -2,7 +2,7 @@ import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd
 
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope = "user-read-recently-played",client_id='3b17a2138f654ee2af635167b3a14e3a', client_secret='26309b0980754c04992edc602e9ac31e', redirect_uri = "http://localhost:8080"))
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope = "user-read-recently-played,playlist-modify-private,playlist-modify-public",client_id='3b17a2138f654ee2af635167b3a14e3a', client_secret='26309b0980754c04992edc602e9ac31e', redirect_uri = "http://localhost:8080"))
 
 def getRecentTracks():
     results = sp.current_user_recently_played(limit = 50) # this is how many songs the average person listens to per day and thus should be a good numbner for this
@@ -13,7 +13,7 @@ def getRecentTracks():
 def printRecentTracks(results):
      for i, item in enumerate(results['items']):
         track = item['track']
-        print(i, track['artists'][0]['name'], " – ", track['name'])
+        print(i + 1, track['artists'][0]['name'], " – ", track['name'])
     
         
           
@@ -22,7 +22,6 @@ def getFeatures(results):
     for i, item in enumerate(results['items']):
         track = item['track']
         spotifyID.append(track["id"])
-        i +=1
     features = []
     features.append(sp.audio_features(spotifyID))
     df = pd.DataFrame(features)
@@ -46,18 +45,21 @@ def alterMood(avValence):
 
 def createHappyPlaylist(results): # I will need the song ids of songs that have a valence above a certain value. This should be taken in context with other songs. I will create a csv file with happy songs in it. max playlist length will be 50. If the playlist is longer than 50 then I will start nocking off music that has been in the playlist longest. 
     spotifyID = []
-    happySongs = []
-    for item in enumerate(results['items']):
+    for i, item in enumerate(results['items']): # the items refers to each value in results the i in necassery to allow for the for loop to loop through the list.
         track = item['track']
         spotifyID.append(track["id"])
-        
     features = []
     features.append(sp.audio_features(spotifyID))
-    for item in enumerate(features[0]["id"]):
-        if features[0][j]["valence"] >= 0.5:
-            track = item['']
-            happySongs.append(track["id"])
-
+    happySondsID = []
+    for j in range(50):
+        valence = (features[0][j]['valence'])
+        if valence > 0.75: # this seems to be a good measure for how happy a song should be 
+            happySondsID.append(features[0][j]['id'])
+    print(happySondsID)
+    #need to identify if a playlist already exists
+    if 
+    sp.user_playlist_create(user = "d23zzt1cy4l04283ewvgktqoy", name = "Happy Vibes", description= "A happy playlist for you to listen to when things aren't going so great.", public= False )
+    return happySondsID
 
 
 
@@ -71,9 +73,10 @@ def spotifyReadFull():
 
 def main():
     results = getRecentTracks()
-    printRecentTracks(results)
+    createHappyPlaylist(results)
+    """printRecentTracks(results)
     avValence = getFeatures(results)
-    alterMood(avValence)
+    alterMood(avValence)"""
 
 
 if __name__ == '__main__':

@@ -23,7 +23,7 @@ def getFeatures(file_name):
         mel = np.mean(librosa.feature.melspectrogram(data, sr=sampleRate).T,axis=0) # creates a spectorgram of all of the mel values from the spectrum
         contrast = np.mean(librosa.feature.spectral_contrast(S=stft, sr=sampleRate).T,axis=0) # finds average spectral contrast 
         flatness = np.mean(librosa.feature.spectral_flatness(y=data)) # find the average flatness of the entire spectrum
-        result = np.hstack((result, mfccs, chroma, mel, contrast, flatness))
+        result = np.hstack((result, mfccs, chroma, mel, contrast, flatness)) # this flips the data so that the features are displayed in different columns, it flips the rows and colums - Transpose. 
     return result
 
 
@@ -52,11 +52,11 @@ def load_data(test_size=0.1):
 
 def XGBoostModelTrain(splitData): # still need to optimise this as it is currently un - optimised. 
     X_train, X_valid, y_train, y_valid = splitData 
-    model = XGBRegressor(random_state = 1, n_estimators=500, learning_rate=0.05)
-    model.fit(X_train, y_train, early_stopping_rounds=5, eval_set=[(X_valid, y_valid)],verbose=False)
-    preds_valid = model.predict(X_valid)
+    model = XGBRegressor(random_state = 1, n_estimators=500, learning_rate=0.05) # can fidle with this later to see what gets the best outcome
+    model.fit(X_train, y_train, early_stopping_rounds=5, eval_set=[(X_valid, y_valid)],verbose=False) # this fits the training data to the model, with the evaluation data being the x and y valid data (testing data)
+    preds_valid = model.predict(X_valid) # this passes the valid data to see if it matches with the y data. 
     print("mean squared error:", mean_squared_error(y_valid, preds_valid, squared=False))
-    pickle.dump(model, open("result/VoiceEmotion.model", "wb"))
+    pickle.dump(model, open("result/VoiceEmotion.model", "wb")) # writes model to a file so it can be used later. 
 
 
 
