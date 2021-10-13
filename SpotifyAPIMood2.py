@@ -28,8 +28,8 @@ def getFeatures(results):
     df = pd.DataFrame(features)
     df.to_csv('recentSongsDataset.csv',index=False)
     valence = []
-    for i in range(10):
-        valence.append(features[0][i]['valence'])
+    for j in range(50):
+        valence.append(features[0][j]['valence'])
     avValence = sum(valence)/len(valence)
     return avValence
   
@@ -41,8 +41,25 @@ def alterMood(avValence):
     x.truncate(0)
     x.write(MusicMood)
     x.close()
-    
-    
+
+
+
+def createHappyPlaylist(results): # I will need the song ids of songs that have a valence above a certain value. This should be taken in context with other songs. I will create a csv file with happy songs in it. max playlist length will be 50. If the playlist is longer than 50 then I will start nocking off music that has been in the playlist longest. 
+    spotifyID = []
+    happySongs = []
+    for item in enumerate(results['items']):
+        track = item['track']
+        spotifyID.append(track["id"])
+        
+    features = []
+    features.append(sp.audio_features(spotifyID))
+    for item in enumerate(features[0]["id"]):
+        if features[0][j]["valence"] >= 0.5:
+            track = item['']
+            happySongs.append(track["id"])
+
+
+
 
 def spotifyReadFull():
     results = getRecentTracks()
