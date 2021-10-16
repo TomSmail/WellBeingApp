@@ -66,11 +66,11 @@ def createHappyPlaylist(results): # I will need the song ids of songs that have 
     print(playlistNames)
     if "Happy Vibes" in playlistNames: # checks to see if the playlist already exists   
         positionIndex = playlistNames.index("Happy Vibes")   
-        sp.playlist_replace_items(playlist_id = playlistIDs[positionIndex], items = happySongsID)
-    else:
+        sp.playlist_replace_items(playlist_id = playlistIDs[positionIndex], items = happySongsID) # replaces the old songs with some newer happy ones.
+    else: # if the playlist does not exist it creates one, important that its public so we can see it in the next api call
         sp.user_playlist_create(user = "d23zzt1cy4l04283ewvgktqoy", name = "Happy Vibes", description= "A happy playlist for you to listen to when things aren't going so great.", public= True )
-        playlists = sp.current_user_playlists()
-        for i, item in enumerate(playlists['items']):
+        playlists = sp.current_user_playlists() # need to be public for this to be different from previous call
+        for i, item in enumerate(playlists['items']): # cycles through items in the dictionary
             playlistNames.append(item["name"])
             playlistIDs.append(item["id"])
         positionIndex = playlistNames.index("Happy Vibes")

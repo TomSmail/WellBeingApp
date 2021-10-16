@@ -28,7 +28,7 @@ def getFeatures(file_name):
 
 
 
-def load_data(test_size=0.1):
+def load_data(test_size=0.1): #this function is taken from the place i got the voice files
     filenameEmotions = {"01": "neutral","02": "calm","03": "happy","04": "sad","05": "angry","06": "scared","07": "disgusted","08": "shocked"}
     emotionsWanted = {"angry","calm","sad","neutral","happy"}
     XData = []
@@ -63,7 +63,7 @@ def XGBoostModelTrain(splitData): # still need to optimise this as it is current
 def encodeResults(file_name):
     features = getFeatures(file_name) # extract speech features
     print(features)
-    splitFeatures =[features[i:i + 1] for i in range(0, len(features), 1)]
+    splitFeatures =[features[i:i + 1] for i in range(len(features))]
     modelPrediction(np.array(splitFeatures))
 
 
