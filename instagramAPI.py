@@ -82,6 +82,7 @@ def writeNewPostToCSV(posts):
 
 
 
+
 def commentReading():
     df = pd.read_csv("postFile.csv")
     listOfComments = df.COMMENTS.to_list()
@@ -89,8 +90,6 @@ def commentReading():
     commentsForReading = []
     totalEmotion = 0
     for row in range(len(df.index)):
-        print(df["TIME"][row])
-        print(time.time() +172800)
         if time.time() - 172800 <= df["TIME"][row]: # if a post is less that 2 days old add the comments to a list (commentsForReading)
             commentsForReading.append(listOfComments[row])
     print(commentsForReading)
@@ -98,21 +97,23 @@ def commentReading():
         commentEmotion = emotion.get_emotion(commentsForReading[comment])
         print("emotion", commentEmotion)
         totalEmotion = totalEmotion + commentEmotion["Happy"] + commentEmotion["Surprise"] - commentEmotion["Angry"] - commentEmotion["Fear"] - commentEmotion["Sad"]
-    print(totalEmotion)
     return totalEmotion #if a post is more than a day old but less that 2 days old then we want to look at its comments
 
 
 
-def likesReading():
+def likesReading(posts):
     df1 = pd.read_csv("postFile.csv")
-    df2 = pd.read_csv("newPostFile.csv")
-    listOfLikes = df1.LIKES.to_list()
-    averageLikes = (sum(listOfLikes)/ len(listOfLikes))
+    allPostLikes = []
+    for i, post in enumerate(posts):
+        allPostLikes.append(post["LIKE_COUNT"])
+    newLikes = df1.LIKE_COUNT.to_list()
     likesEmotion = 0
-    for i in range(len(df1)):
-        if df1[i]["TIME"] <= time.time() - 86400: # checks to see if a post is more than a day old and not in the dataframe already
-            likes = df1[i]["LIKE_COUNT"]
-            likesEmotion = likesEmotion + (likes - averageLikes)
+    if sum(newLikes) == 0 or sum(allPostLikes) == 0:
+        return likesEmotion
+    else:
+        averageNewLikes = (sum(newLikes)/ len(newLikes))
+        averageAllLikes = (sum(allPostLikes)/ len(allPostLikes))
+        likesEmotion = (averageNewLikes - averageAllLikes)
     return likesEmotion
 
 
@@ -127,6 +128,9 @@ def main():
     bot = setupCheckCookies()
     posts = getPostLikes(bot)
     writeNewPostToCSV(posts)
+    print(commentReading())
+    print(likesReading(posts))
+
 
 if __name__ == '__main__':
     print("----Running Programn----")
