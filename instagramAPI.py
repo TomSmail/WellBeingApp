@@ -43,26 +43,6 @@ def getPostLikes(bot):
 
 
 
-"""def writeNewPostToCSV(posts): # THIS FUNCTION IS NOT CURRENTLY IN USE
-    file = open('postFile.csv', 'w')
-    originalFile = open('postFile.csv', "r")
-    reader = csv.reader(originalFile)
-    writer = csv.writer(file)
-    yesterday = datetime.date.today() - datetime.timedelta(days=1)
-    fieldNames = ["ID", "TIME", "LIKE_COUNT", "COMMENTS"]
-    newposts = []
-    with open ('postFile.csv', "r") as fileObject:
-        f = fileObject.read()
-        for post in posts:
-            if post["ID"] not in f:
-                newposts.append(post)
-    print(newposts)"""
-"""dictWriter = DictWriter(fileObject, fieldnames = fieldNames)
-if posts[row][0] not in originalFile: #or (posts[0] in file and posts[1] < yesterday):
-    dictWriter.writerow(posts[row])
-else:
-    print("error")"""
-
 def writeNewPostToCSV(posts):
     df = pd.read_csv("postFile.csv")
     print(df)
