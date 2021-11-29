@@ -71,7 +71,9 @@ def encodeResults(file_name):
 def modelPrediction(voiceData):
     model = pickle.load(open("result/VoiceEmotion.model", 'rb'))
     print(model)
-    print(f"This is the prediction for the recording: {model.predict(voiceData)}, taken from voiceData.")
+    prediction = model.predict(voiceData)
+    print(f"This is the prediction for the recording: {prediction}, taken from voiceData.")
+    return prediction
 
 
 

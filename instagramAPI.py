@@ -72,6 +72,8 @@ def commentReading():
     for row in range(len(df.index)):
         if time.time() - 172800 <= df["TIME"][row]: # if a post is less that 2 days old add the comments to a list (commentsForReading)
             commentsForReading.append(listOfComments[row])
+        else:
+            totalEmotion = 0
     print(commentsForReading)
     for comment in range(len(commentsForReading)):
         commentEmotion = emotion.get_emotion(commentsForReading[comment])
@@ -102,6 +104,11 @@ def refreshPosts():
     posts = getPostLikes(bot)
     writeNewPostToCSV(posts)
 
+def readLikes():
+    bot = setupCheckCookies()
+    posts = getPostLikes(bot)
+    return likesReading(posts)
+    
 
 
 def main():

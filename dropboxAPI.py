@@ -9,6 +9,7 @@ def pullVoiceRecording():
         if "voiceRecording" in file.name:
             er.encodeResults(file)
             print("results have been encoded")
+            #need to be able to append encoded results onto a file in table
             db.files_delete(file)
 
         else:
