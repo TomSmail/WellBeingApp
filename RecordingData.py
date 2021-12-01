@@ -7,16 +7,14 @@ import csv
 
 def gatherData(backEndTesting, TrainingModel)): # TrainingModel is a bool. 
     ia1.refreshPosts() # need to refresh the post file to check for new posts as the two insta functions dont do this themselves. 
+    
     if backEndTesting:
         userInput = input("Enter a value 0-10")
-
-        try:
-            userInput = float(userInput)
-        except:
-            gatherData(True)
+        while type(userInput) != int:
+            userInput = input("Enter a value 0-10")
     else:
         if TrainingModel:
-            userInput = # take user input from file from front end. 
+            userInput = #open dropbox file and extract userInput
         else:
             userInput = "Strip this value when traing ML model"
 
@@ -29,7 +27,15 @@ def gatherData(backEndTesting, TrainingModel)): # TrainingModel is a bool.
 
             
 def main():
-    gatherData()
+    if input("Back End Testing? y/n") = "y":
+        backEndTest = True
+    else:
+        backEndTest = False
+    if input("Training Model? y/n") = "y":
+        trainingModel = True
+    else: 
+        trainingModel = False
+    gatherData(backEndTest, TrainingModel)
 
 
 if __name__ == '__main__':
