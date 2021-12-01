@@ -12,7 +12,7 @@ from sklearn.preprocessing import LabelEncoder # makes the y values integers so 
 
 
 
-def getFeatures(file_name):
+def getFeatures(fileName):
     with soundfile.SoundFile(file_name) as file:
         data = file.read(dtype="float32")
         sampleRate = file.samplerate # This is the number of samples of audio a second 
@@ -60,7 +60,7 @@ def XGBoostModelTrain(splitData): # still need to optimise this as it is current
 
 
 
-def encodeResults(file_name):
+def encodeResults(fileName):
     features = getFeatures(file_name) # extract speech features
     print(features)
     splitFeatures =[features[i:i + 1] for i in range(len(features))]
@@ -68,7 +68,8 @@ def encodeResults(file_name):
 
 
 
-def modelPrediction(voiceData):
+def modelPrediction(fileName):
+    voiceData = getFeatures(fileName)
     model = pickle.load(open("result/VoiceEmotion.model", 'rb'))
     print(model)
     prediction = model.predict(voiceData)

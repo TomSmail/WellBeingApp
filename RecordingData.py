@@ -9,6 +9,7 @@ def gatherData(backEndTesting, TrainingModel)): # TrainingModel is a bool.
     ia1.refreshPosts() # need to refresh the post file to check for new posts as the two insta functions dont do this themselves. 
     if backEndTesting:
         userInput = input("Enter a value 0-10")
+
         try:
             userInput = float(userInput)
         except:
@@ -19,7 +20,7 @@ def gatherData(backEndTesting, TrainingModel)): # TrainingModel is a bool.
         else:
             userInput = "Strip this value when traing ML model"
 
-    newRow = {"TIME": time.time() ,"INSTAGRAM_l": ia1.readLikes(), "INSTAGRAM_c": ia1.commentReading(), "SPOTIFY_v": sam2.spotifyReadFull(), "VOICE_e": er1., "USER_i": userInput }
+    newRow = {"TIME": time.time() ,"INSTAGRAM_l": ia1.readLikes(), "INSTAGRAM_c": ia1.commentReading(), "SPOTIFY_v": sam2.spotifyReadFull(), "VOICE_e": er1.modelPrediction(fileName), "USER_i": userInput } 
     headers = ["TIME","INSTAGRAM_l","INSTAGRAM_c","SPOTIFY_v","VOICE_e", "USER_i"]
     file = open('trainingData.csv', 'w')
     writer = csv.DictWriter(file, headers)
