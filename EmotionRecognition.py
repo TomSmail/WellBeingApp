@@ -5,7 +5,7 @@ import glob
 import os
 import pickle # to save model after training
 from sklearn.model_selection import train_test_split # for splitting training and testing
-from sklearn.metrics import mean_squared_error # to measure how good the model is
+from sklearn.metrics import mean_squared_error # to measure how good the model is66
 from sklearn.preprocessing import OrdinalEncoder # mask data that is missing
 from xgboost import XGBRegressor # machine learning model
 from sklearn.preprocessing import LabelEncoder # makes the y values integers so they can be interpreted by XGBoost
@@ -13,7 +13,8 @@ from sklearn.preprocessing import LabelEncoder # makes the y values integers so 
 
 
 def getFeatures(fileName):
-    with soundfile.SoundFile(file_name) as file:
+    with soundfile.SoundFile(fileName) as file:
+
         data = file.read(dtype="float32")
         sampleRate = file.samplerate # This is the number of samples of audio a second 
         stft = np.abs(librosa.stft(data)) # this calcualtes the short-time fourier transform - which is used to determine the frequency and content of sections of a sound wave. 
@@ -23,9 +24,8 @@ def getFeatures(fileName):
         mel = np.mean(librosa.feature.melspectrogram(data, sr=sampleRate).T,axis=0) # creates a spectorgram of all of the mel values from the spectrum
         contrast = np.mean(librosa.feature.spectral_contrast(S=stft, sr=sampleRate).T,axis=0) # finds average spectral contrast 
         flatness = np.mean(librosa.feature.spectral_flatness(y=data)) # find the average flatness of the entire spectrum
-        result = np.hstack((result, mfccs, chroma, mel, contrast, flatness)) # this flips the data so that the features are displayed in different columns, it flips the rows and colums - Transpose. 
-    return result
-
+        
+    return (stft,  mfccs, chroma, mel, contrast, flatness) # result
 
 
 def load_data(test_size=0.1): #this function is taken from the place i got the voice files
@@ -61,7 +61,7 @@ def XGBoostModelTrain(splitData): # still need to optimise this as it is current
 
 
 def encodeResults(fileName):
-    features = getFeatures(file_name) # extract speech features
+    features = getFeatures(fileName) # extract speech features
     print(features)
     splitFeatures =[features[i:i + 1] for i in range(len(features))]
     modelPrediction(np.array(splitFeatures))
@@ -76,14 +76,12 @@ def modelPrediction(fileName):
     print(f"This is the prediction for the recording: {prediction}, taken from voiceData.")
     return prediction
 
-
-
-
+def trainModel():
+    splitData = load_data()
+    XGBoostModelTrain(splitData)
 
 def main():
-    encodeResults("03-01-01-01-01-01-01.wav")
-    """splitData = load_data(test_size=0.25)
-    XGBoostModelTrain(splitData)"""
+    trainModel()
 
 
 

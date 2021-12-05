@@ -5,7 +5,7 @@ import time
 import pandas as pd
 import csv
 
-def gatherData(backEndTesting, TrainingModel)): # TrainingModel is a bool. 
+def gatherData(backEndTesting, TrainingModel): # TrainingModel is a bool. 
     ia1.refreshPosts() # need to refresh the post file to check for new posts as the two insta functions dont do this themselves. 
     
     if backEndTesting:
@@ -14,7 +14,7 @@ def gatherData(backEndTesting, TrainingModel)): # TrainingModel is a bool.
             userInput = input("Enter a value 0-10")
     else:
         if TrainingModel:
-            userInput = #open dropbox file and extract userInput
+            userInput = [0]#open dropbox file and extract userInput
         else:
             userInput = "Strip this value when traing ML model"
 
@@ -27,15 +27,15 @@ def gatherData(backEndTesting, TrainingModel)): # TrainingModel is a bool.
 
             
 def main():
-    if input("Back End Testing? y/n") = "y":
+    if input("Back End Testing? y/n") == "y":
         backEndTest = True
     else:
         backEndTest = False
-    if input("Training Model? y/n") = "y":
+    if input("Training Model? y/n") == "y":
         trainingModel = True
     else: 
         trainingModel = False
-    gatherData(backEndTest, TrainingModel)
+    gatherData(backEndTest, trainingModel)
 
 
 if __name__ == '__main__':
