@@ -1,0 +1,8 @@
+1. Fix Emotion Recognition, Idetify issues and create csv file for storing the data for each voice
+ - Write Data from files and create csv with y values and x values stored as one
+ - Read the Data from the csv
+ - Remove Rows with no data
+ - split data into training and testing
+ - build model 
+ - train model using xgboost (import)
+ - use model to create predictions and find mean error
