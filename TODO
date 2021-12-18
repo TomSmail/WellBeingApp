@@ -6,3 +6,8 @@
  - build model 
  - train model using xgboost (import)
  - use model to create predictions and find mean error
+2. Check Spotify Function still works as intended
+3. Check Instagram Function still works as intended
+  - Research how Instagram is blocking my algorithms
+  - Find legal way around
+  - 

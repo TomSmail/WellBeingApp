@@ -24,7 +24,7 @@ def checkUserExists(clientInfo):
 
 def passwordEncryption(clientInfo):
     key = Fernet.generate_key()
-    keyfile = open("passwordKey.key", "wb")
+    keyfile = open("Code/passwordKey.key", "wb")
     keyfile.write(key)
     keyfile.close()
     encodedPassword = clientInfo["password"].encode()
@@ -35,7 +35,7 @@ def passwordEncryption(clientInfo):
 
 
 def passwordDecryption(encryptedPassword):
-    keyfile = open("passwordKey.key", "rb")
+    keyfile = open("Code/passwordKey.key", "rb")
     key = keyfile.read()
     keyfile.close()
     tool = Fernet(key)
@@ -47,20 +47,20 @@ def passwordDecryption(encryptedPassword):
 
 
 def writeDetailsToFile(clientInfo, encryptedPassword):
-    userFile = open("userFile.txt", "w")
+    userFile = open("Code/userFile.txt", "w")
     userFile.write(clientInfo["username"])
     userFile.close()
-    passwordFile = open("passwordFile.key", "wb")
+    passwordFile = open("Code/passwordFile.key", "wb")
     passwordFile.write(encryptedPassword)
     passwordFile.close()
 
 
 
 def getDetailsFromFile():
-    userFile = open("userFile.txt", "r")
+    userFile = open("Code/userFile.txt", "r")
     username = userFile.read()
     userFile.close()
-    passwordFile = open("passwordFile.key", "rb")
+    passwordFile = open("Code/passwordFile.key", "rb")
     encryptedPassword = passwordFile.read()
     passwordFile.close()
     return username, encryptedPassword

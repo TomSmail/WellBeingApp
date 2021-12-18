@@ -76,9 +76,11 @@ def predictValue(fileName):
     Model1 = pickle.load(open("Code/result/VoiceEmotion.model", 'rb'))
     features = getFeatures(fileName)
     del features["emotion"]
-    features = pd.DataFrame(features, [0])
+    features = pd.DataFrame(features, [0]) # Gets data in same format as "pd.read_csv"
     print(features)
-    print(Model1.predict(features))
+    prediction = Model1.predict(features)
+    print(prediction)
+    return(prediction)
 
 
 
@@ -87,5 +89,5 @@ def predictValue(fileName):
 
 if __name__ == '__main__':
     print("Running Programn")
-    predictValue("/home/tomsmail/Documents/0SCHOOL/A-Level/Comp Sci/NEA/Code/03-01-01-01-01-01-01.wav")
+    predictValue("audio.wav")
     

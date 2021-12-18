@@ -27,15 +27,11 @@ def getPostLikes(bot):
     media = bot.get_your_medias(as_dict=False)
     print (media)
     posts = []
-    choice = input("Do you want the list of like users? y/n :")
     for i in range(len(media)):
         likeUserIDs = bot.get_media_likers(media[i])
         comments = bot.get_media_comments(media[i], only_text = True)
         now = bot.get_your_medias(as_dict=True)[i]["taken_at"]
         print("This is the number of likes", likeUserIDs)
-        if choice == "y":
-            for j in range(len(likeUserIDs)):
-                print("These people liked your post:", bot.get_username_from_user_id(likeUserIDs[j]))
         print("Post number", i + 1, "has", len(likeUserIDs), "likes.")
         posts.append({"ID": media[i], "TIME": now, "LIKE_COUNT": len(likeUserIDs),"COMMENTS": comments})#["Post", i] = len(likeUserIDs)
     print(posts)
@@ -44,7 +40,7 @@ def getPostLikes(bot):
 
 
 def writeNewPostToCSV(posts):
-    df = pd.read_csv("postFile.csv")
+    df = pd.read_csv("Code/postFile.csv")
     print(df)
     newposts = []
     listOfID = df.ID.to_list()
@@ -64,7 +60,7 @@ def writeNewPostToCSV(posts):
 
 
 def commentReading():
-    df = pd.read_csv("postFile.csv")
+    df = pd.read_csv("Code/postFile.csv")
     listOfComments = df.COMMENTS.to_list()
     print(listOfComments)
     commentsForReading = []
@@ -84,7 +80,7 @@ def commentReading():
 
 
 def likesReading(posts):
-    df1 = pd.read_csv("postFile.csv")
+    df1 = pd.read_csv("Code/postFile.csv")
     allPostLikes = []
     for i, post in enumerate(posts):
         allPostLikes.append(post["LIKE_COUNT"])
