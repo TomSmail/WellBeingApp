@@ -48,7 +48,7 @@ def writeNewPostToCSV(posts):
         if posts[i]["TIME"] >= time.time() - 86400 and posts[i]["ID"] not in listOfID: # checks to see if a post is more than a day old and not in the dataframe already
             newposts.append(posts[i])
     print("newpost", newposts)
-    with open("postFile.csv", 'w', newline='') as write:
+    with open("Code/postFile.csv", 'w', newline='') as write:
         fieldNames = ["ID", "TIME", "LIKE_COUNT", "COMMENTS"]
         rowWriter = DictWriter(write, fieldNames)
         rowWriter.writeheader()
@@ -92,6 +92,17 @@ def likesReading(posts):
         averageNewLikes = (sum(newLikes)/ len(newLikes))
         averageAllLikes = (sum(allPostLikes)/ len(allPostLikes))
         likesEmotion = (averageNewLikes - averageAllLikes)
+        if likesEmotion >= 0.2*averageAllLikes: # stardises results
+            likesEmotion = 2
+        elif likesEmotion >= 0.05*averageAllLikes and likesEmotion <= 0.2*averageAllLikes:
+            likesEmotion = 1
+        elif likesEmotion <= 0.05*averageAllLikes and likesEmotion >= -(0.05*averageAllLikes): 
+            likesEmotion = 0
+        elif likesEmotion <= -0.05*averageAllLikes and likesEmotion >= -(0.2*averageAllLikes):
+            likesEmotion = -1
+        elif likesEmotion <= -(0.2*averageAllLikes):
+            likesEmotion = -2
+
     return likesEmotion
 
 

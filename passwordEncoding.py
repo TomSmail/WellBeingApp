@@ -41,7 +41,6 @@ def passwordDecryption(encryptedPassword):
     tool = Fernet(key)
     decryptedPassword = tool.decrypt(encryptedPassword)
     originalPassword = decryptedPassword.decode()
-    print ("This is the original password", originalPassword)
     return originalPassword
 
 
