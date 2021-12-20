@@ -8,7 +8,7 @@ import signal
 import time
 
 
-class Timeout(Exception): # 
+class Timeout(Exception):  
     pass
 
 def handler(sig, frame):
@@ -36,7 +36,7 @@ def gatherData(backEndTesting, TrainingModel): # TrainingModel is a bool.
         else:
             userInput = 0
 
-    newRow = {"TIME": time.time() ,"INSTAGRAM_l": likes, "INSTAGRAM_c": comments, "SPOTIFY_v": sam2.spotifyReadFull(), "VOICE_e": er2.predictValue("audio1.wav")[0], "USER_i": userInput } 
+    newRow = {"TIME": time.time() ,"INSTAGRAM_l": likes, "INSTAGRAM_c": comments, "SPOTIFY_v": sam2.spotifyReadFull(), "VOICE_e": er2.predictValue("audio2.wav")[0], "USER_i": userInput } 
     headers = ["TIME","INSTAGRAM_l","INSTAGRAM_c","SPOTIFY_v","VOICE_e", "USER_i"]
     file = open('trainingData.csv', 'a') 
     writer = csv.DictWriter(file, headers)
