@@ -28,7 +28,7 @@ import wave
 def recordAudio(time = 300):
     audio = pyaudio.PyAudio()
     time = time * 21.4285714286 # value to convert real time into "> x" value
-    stream = audio.open(format=pyaudio.paInt16, channels = 2, rate = 22050, input = True, frames_per_buffer=1024)
+    stream = audio.open(format=pyaudio.paInt16, channels = 1, rate = 22050, input = True, frames_per_buffer=1024)
     frames = []
     x = 0
     while x <= time:
@@ -40,7 +40,7 @@ def recordAudio(time = 300):
     audio.terminate()
 
     sound_file = wave.open("audio2.wav", "wb")
-    sound_file.setnchannels(2)
+    sound_file.setnchannels(1)
     sound_file.setsampwidth(audio.get_sample_size(pyaudio.paInt16))
     sound_file.setframerate(22050)
     sound_file.writeframes(b"".join(frames))
