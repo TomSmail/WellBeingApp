@@ -13,16 +13,20 @@ import notify2
 class voiceRecorder(App):
 
     def build(self):
+
+        # Setting up grids and logo
         self.window = GridLayout()
         self.window.cols = 1
         self.window.size_hint = (0.8, 0.8)
         self.window.pos_hint = {"center_x": 0.5, "center_y": 0.5}
         self.window.add_widget(Image(source = "logo.png"))
 
+        # Slider for length of audio recording
         self.slider = Slider(value = 35, min = 10, max = 60, step = 5, padding = 32, cursor_size = [30, 30], cursor_image = "dot.png")
         self.window.add_widget(Label(text = "How long would you like to talk for?", font_size = 20, color  = "FFFFFF", font_name = "comic"))
         self.window.add_widget(self.slider)
 
+        # Button to start talking 
         self.button = Button(text="Talk!", font_size = 25, color  = "FFFFFF", font_name = "comic", size_hint = (.5,.4), background_color = "00801A", background_normal = "")
         self.button.bind(on_press = self.buttonCall)
         self.window.add_widget(self.button)

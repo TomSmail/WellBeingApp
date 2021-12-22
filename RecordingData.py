@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 import random
 
 
-
+# This is to allow for a timeout exception to be thrown
 class Timeout(Exception):  
     pass
 
@@ -20,27 +20,37 @@ def handler(sig, frame):
 
 
 
-def gatherData(backEndTesting, TrainingModel): # TrainingModel is a bool. 
+def gatherData(backEndTesting, TrainingModel): 
+
+    # Initialises signal function to throw an error if "try" takes too long
     signal.signal(signal.SIGALRM, handler) 
-    signal.alarm(30)  #if instagram has issue then after 30 seconds move on and ignore it
+    signal.alarm(30)  
     try:
-        ia1.refreshPosts() # need to refresh the post file to check for new posts as the two insta functions dont do this themselves. 
+
+        # Runs Instagram data gathering
+        # Throws 429 sometimes causing these functions to barf
+        ia1.refreshPosts()
         likes = ia1.readLikes()
         comments = ia1.commentReading()
     except Timeout:
         likes = 0
         comments = 0
 
+    # This code is semi-outdated as I am no longer predicting total mood using ML
     if backEndTesting:
         userInput = int(input("Enter a value 0-10"))
         while type(userInput) != int:
             userInput = input("Enter a value 0-10")
     else:
         if TrainingModel:
-            userInput = 0 #open dropbox file and extract userInput
+            userInput = int(input("Enter a value 0-10"))
+            while type(userInput) != int:
+                userInput = input("Enter a value 0-10")
         else:
             userInput = 0
 
+    # Creates a new row in csv file and adds all the important data to it
+    # This inclues: Instagram (likes and comments), Spotify and Emotion Recognition
     newRow = {"TIME": time.time() ,"INSTAGRAM_l": likes, "INSTAGRAM_c": comments, "SPOTIFY_v": sam2.spotifyReadFull(), "VOICE_e": er2.predictValue("audio2.wav")[0], "USER_i": userInput } 
     headers = ["TIME","INSTAGRAM_l","INSTAGRAM_c","SPOTIFY_v","VOICE_e", "USER_i"]
     file = open('trainingData.csv', 'a') 
@@ -51,27 +61,40 @@ def gatherData(backEndTesting, TrainingModel): # TrainingModel is a bool.
 
 
 def interpretData(likesWeight = 1, commentsWeight = 1, spotifyWeight = 1, voiceWeight = 1): 
+
+    # Opens csv and interprets the latest data from each column
     file = open('trainingData.csv', 'r') 
     reader = csv.reader(file)
     rows = []
     for row in reader:
         rows.append(row)
+    
+    # Each data source has a different weight to change how it effects the mood
     mood = float(rows[-1][1]*likesWeight) + float(rows[-1][2]*commentsWeight) + float(rows[-1][3]*spotifyWeight) + float(rows[-1][4]*voiceWeight)
     print(mood)
     return mood
 
 
 def outputActions(mood):
+
+    # Each mood level trigers a different output.
     if mood >= 1:
+
+        # Best mood - nothing needs to be done
         message = "Keep up the positivity!"
         return message
 
     elif mood >= -1 and mood < 1:
+
+        # Creates a happy playlist and notifies user
         sam2.HappyPlayslistFull()
         message = "We have made you a playlist! Listen to it whilst doing something you enjoy"
         return message 
 
     elif mood <  -1:
+
+        # Creates a happy playlist
+        # Takes positive quote from website, sends it to user in notification
         sam2.HappyPlayslistFull()
         page = requests.get("https://www.keepinspiring.me/positive-quotes-and-sayings/")
         soup = BeautifulSoup(page.content, 'html.parser')

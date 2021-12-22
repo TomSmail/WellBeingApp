@@ -5,6 +5,8 @@ from cryptography.fernet import Fernet
 
 
 def getUsernameAndPassword():
+
+    # Gets username and password to login to Instagram
     clientInfo  = {"username": "", "password": ""}
     clientInfo["username"] = input("Please input your username: ")
     clientInfo["password"] = input("Please input your password: ")
@@ -12,17 +14,22 @@ def getUsernameAndPassword():
 
 
 
-def checkUserExists(clientInfo):
+def checkUserExists():
+
+    # Checks to see if the user exists if not recursively call itself
+    clientInfo = getUsernameAndPassword()
     try:
         bot = Bot()
         bot.login(username= clientInfo["username"], password = clientInfo["password"])
     except: 
         print("This username and password do not match, please try again")
-        getUsernameAndPassword()
+        checkUserExists()
 
 
 
 def passwordEncryption(clientInfo):
+    
+    # Takes user info and encodes password
     key = Fernet.generate_key()
     keyfile = open("Code/passwordKey.key", "wb")
     keyfile.write(key)
@@ -35,6 +42,8 @@ def passwordEncryption(clientInfo):
 
 
 def passwordDecryption(encryptedPassword):
+
+    # Takes the password and using same encryption key decodes it
     keyfile = open("Code/passwordKey.key", "rb")
     key = keyfile.read()
     keyfile.close()
@@ -46,6 +55,8 @@ def passwordDecryption(encryptedPassword):
 
 
 def writeDetailsToFile(clientInfo, encryptedPassword):
+
+    # Writes the username and password to seperate files 
     userFile = open("Code/userFile.txt", "w")
     userFile.write(clientInfo["username"])
     userFile.close()
@@ -56,6 +67,8 @@ def writeDetailsToFile(clientInfo, encryptedPassword):
 
 
 def getDetailsFromFile():
+
+    # Reads the username and password from seperate files
     userFile = open("Code/userFile.txt", "r")
     username = userFile.read()
     userFile.close()
