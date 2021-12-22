@@ -7,6 +7,7 @@ from kivy.uix.slider import Slider
 from kivy.animation import Animation
 import audioRecording as ar1
 import RecordingData as rd1
+import notify2
 
 
 class voiceRecorder(App):
@@ -29,12 +30,22 @@ class voiceRecorder(App):
         return self.window
 
     def buttonCall(self, instance):
+
+        # Recording Audio
         self.button.text = "Finished! (" + str(self.slider.value) + " seconds)"
         ar1.recordAudio(self.slider.value)
-        rd1.gatherData(False, False)
-        rd1.interpretData()
 
-        
+        # Gathering data from Instagram, Spotify etc and interpreting 
+        rd1.gatherData(False, False)
+        mood = rd1.interpretData()
+
+        # Notifications and Actions based on user's mood
+        message = rd1.outputActions(mood)
+        notify2.init("Emotion Output")
+        notification = notify2.Notification(summary = "Mood Reader", message =  message)
+        notification.set_urgency(notify2.URGENCY_NORMAL)
+        notification.set_timeout(2000)
+        notification.show()
 
 if __name__ == "__main__":
     voiceRecorder().run()

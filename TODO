@@ -24,5 +24,11 @@
   - Maybe add a way to change weightings?
 7. Make a way to record audio
   - needs to delete past recording and make a new recording
-8. Make a kivy 
+8. Make a kivy app
+9. Write algorithm to, based on users current emotion, do certain things
+  - eg make happy playlist if the user is sad. 
+  - other things can be worked out later
+  - selection of if statements - > take output of mood and see if it is greater / less than certain values
+  - then respond to this with 
+  
   

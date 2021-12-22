@@ -22,6 +22,7 @@ def getFeatures(fileName):
         mel = np.mean(librosa.feature.melspectrogram(data, sr=sampleRate)) # creates a spectorgram of all of the mel values from the spectrum
         contrast = np.mean(librosa.feature.spectral_contrast(S=stft, sr=sampleRate)) # finds average spectral contrast 
         flatness = np.mean(librosa.feature.spectral_flatness(y=data)) # find the average flatness of the entire spectrum
+        
     return ({ "mfccs": mfccs, "chroma": chroma, "mel": mel, "contrast": contrast, "flatness": flatness, "emotion": "none"})
 
 

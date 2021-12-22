@@ -6,6 +6,10 @@ import pandas as pd
 import csv
 import signal
 import time
+import requests
+from bs4 import BeautifulSoup
+import random
+
 
 
 class Timeout(Exception):  
@@ -13,6 +17,7 @@ class Timeout(Exception):
 
 def handler(sig, frame):
     raise Timeout
+
 
 
 def gatherData(backEndTesting, TrainingModel): # TrainingModel is a bool. 
@@ -43,6 +48,8 @@ def gatherData(backEndTesting, TrainingModel): # TrainingModel is a bool.
     writer.writerow(newRow)
     file.close()
 
+
+
 def interpretData(likesWeight = 1, commentsWeight = 1, spotifyWeight = 1, voiceWeight = 1): 
     file = open('trainingData.csv', 'r') 
     reader = csv.reader(file)
@@ -53,6 +60,30 @@ def interpretData(likesWeight = 1, commentsWeight = 1, spotifyWeight = 1, voiceW
     print(mood)
     return mood
 
+
+def outputActions(mood):
+    if mood >= 1:
+        message = "Keep up the positivity!"
+        return message
+
+    elif mood >= -1 and mood < 1:
+        sam2.HappyPlayslistFull()
+        message = "We have made you a playlist! Listen to it whilst doing something you enjoy"
+        return message 
+
+    elif mood <  -1:
+        sam2.HappyPlayslistFull()
+        page = requests.get("https://www.keepinspiring.me/positive-quotes-and-sayings/")
+        soup = BeautifulSoup(page.content, 'html.parser')
+        i = random.randint(0, len(soup.find_all(class_ = "wp-block-quote is-style-large")))
+        quote = soup.find_all(class_ = "wp-block-quote is-style-large")[i].get_text()
+        quoteList = (quote.split("."))
+        quoteList.insert(1, "-")
+        quote = " ".join(quoteList)
+        print("quote:", quote)
+        message = quote
+        return message
+        
 
 
 def main():

@@ -85,7 +85,9 @@ def spotifyReadFull():
     alterMood(avValence)
     return avValence
 
-
+def HappyPlayslistFull():
+    results = getRecentTracks()
+    createHappyPlaylist(results)
 
 def main():
     results = getRecentTracks()
