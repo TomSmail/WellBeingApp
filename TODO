@@ -30,5 +30,20 @@
   - other things can be worked out later
   - selection of if statements - > take output of mood and see if it is greater / less than certain values
   - then respond to this with 
+10. Write Proper Comments on all of the different pieces of code
+  - audioRecording
+  - ER2
+  - PsswrdEncoding
+  - Instagram
+  - Spotify2
+  - RecordingData
+  - App
+11. Fix Instagram code / make it cleaner
+  - Each function should be relatively selfcontained
+  - for comparing use dataframe, it needs to be updated
+  - then just compare the latest posts ie ones that are less than two days old with all time posts
+12. Create way to get Spotify Happy Vibes playlist without any happy songs in past 50 songs
+
+
   
   

@@ -1,5 +1,5 @@
 import SpotifyAPIMood2 as sam2
-import instagramAPI as ia1
+import instagramAPI2 as ia2
 import EmotionRecognition2 as er2
 import time
 import pandas as pd
@@ -28,10 +28,9 @@ def gatherData(backEndTesting, TrainingModel):
     try:
 
         # Runs Instagram data gathering
-        # Throws 429 sometimes causing these functions to barf
-        ia1.refreshPosts()
-        likes = ia1.readLikes()
-        comments = ia1.commentReading()
+        # Throws 429 sometimes causing this function to barf
+        comments, likes  = ia2.instagramEmotion()
+        
     except Timeout:
         likes = 0
         comments = 0

@@ -45,10 +45,10 @@ def writeNewPostToCSV(posts):
     newposts = []
     listOfID = df.ID.to_list()
     for i in range(len(posts)):
-        if posts[i]["TIME"] >= time.time() - 86400 and posts[i]["ID"] not in listOfID: # checks to see if a post is more than a day old and not in the dataframe already
+        if posts[i]["ID"] not in listOfID: 
             newposts.append(posts[i])
     print("newpost", newposts)
-    with open("Code/postFile.csv", 'w', newline='') as write:
+    with open("Code/postFile.csv", 'a', newline='') as write:
         fieldNames = ["ID", "TIME", "LIKE_COUNT", "COMMENTS"]
         rowWriter = DictWriter(write, fieldNames)
         rowWriter.writeheader()
@@ -69,7 +69,7 @@ def commentReading():
         if time.time() - 172800 <= df["TIME"][row]: # if a post is less that 2 days old add the comments to a list (commentsForReading)
             commentsForReading.append(listOfComments[row])
         else:
-            totalEmotion = 0
+            totalEmotion += 0
     print(commentsForReading)
     for comment in range(len(commentsForReading)):
         commentEmotion = emotion.get_emotion(commentsForReading[comment])
@@ -121,9 +121,7 @@ def readLikes():
 def main():
     bot = setupCheckCookies()
     posts = getPostLikes(bot)
-    writeNewPostToCSV(posts)
-    print(commentReading())
-    print(likesReading(posts))
+    
 
 
 if __name__ == '__main__':
