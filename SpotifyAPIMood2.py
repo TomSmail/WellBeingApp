@@ -95,9 +95,25 @@ def createHappyPlaylist(results):
 
     # Replace the songs in "Happy Vibes"    
     if "Happy Vibes" in playlistNames: 
-        positionIndex = playlistNames.index("Happy Vibes")   
-        sp.playlist_replace_items(playlist_id = playlistIDs[positionIndex], items = happySongsID) 
-    
+        positionIndex = playlistNames.index("Happy Vibes")
+        originalSongs = []   
+        newSongs = []
+
+        # Identify songs not in playlist
+        for i in range(sp.user_playlist_tracks(playlist_id = playlistIDs[positionIndex])["total"]):
+            originalSongs.append(sp.playlist_items(playlist_id = playlistIDs[positionIndex])["items"][i]["track"]["id"])
+        for i in range(len(happySongsID)):
+            if happySongsID[i] in originalSongs:
+                continue
+            else: 
+                newSongs.append(happySongsID[i])
+
+        # Add and replace songs
+        if sp.user_playlist_tracks(playlist_id = playlistIDs[positionIndex])["total"] >= 30 and len(happySongsID) != 0:
+            sp.playlist_replace_items(playlist_id = playlistIDs[positionIndex], items = happySongsID)
+        elif len(newSongs) != 0:
+            sp.playlist_add_items(playlist_id = playlistIDs[positionIndex], items = newSongs)
+        
     # Create a playlist with called Happy Vibes
     else: 
         sp.user_playlist_create(user = "d23zzt1cy4l04283ewvgktqoy", name = "Happy Vibes", description= "A happy playlist for you to listen to when things aren't going so great.", public= True )
