@@ -43,6 +43,8 @@
   - for comparing use dataframe, it needs to be updated
   - then just compare the latest posts ie ones that are less than two days old with all time posts
 12. Create way to get Spotify Happy Vibes playlist without any happy songs in past 50 songs
+13. Get Multitasking working with kivy
+  - Need to be able to run multiple threads at once
 
 
   

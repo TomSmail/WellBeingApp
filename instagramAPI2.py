@@ -78,8 +78,9 @@ def commentReading():
     totalEmotion = 0
 
     # Add new comments to list
-    for row in range(len(df.index)):
-        if time.time() - 172800 <= df["TIME"][row]: 
+    for row in range(1, len(df.index) - 1):
+        print(df["TIME"][row])
+        if time.time() - 172800 <= int(df["TIME"][row]): 
             commentsForReading.append(listOfComments[row])
     print(commentsForReading)
 
@@ -101,8 +102,8 @@ def likesReading():
     
     # Identify new post likes
     newposts = []
-    for row in range(len(df.index)):
-        if time.time() - 172800 <= df["TIME"][row]:
+    for row in range(1, len(df.index) - 1):
+        if time.time() - 172800 <= int(df["TIME"][row]):
             newposts.append(allPostLikes[row])
     print(newposts)
 
@@ -149,4 +150,4 @@ def instagramEmotion():
 
 if __name__ == '__main__':
     print("----Running Programn----")
-    instagramEmotion()
+    print(commentReading())
