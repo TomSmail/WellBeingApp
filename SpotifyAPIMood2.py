@@ -39,7 +39,7 @@ def getFeatures(results):
 
     # Finds the average valence of the past 50 songs
     valence = []
-    for j in range(50):
+    for j in range(len(features[0])):
         valence.append(features[0][j]['valence'])
     avValence = sum(valence)/len(valence)
     return avValence
@@ -78,7 +78,7 @@ def createHappyPlaylist(results):
     features = []
     features.append(sp.audio_features(spotifyID))
     happySongsID = []
-    for j in range(50):
+    for j in range(len(features[0])):
         valence = (features[0][j]['valence'])
 
         # If the song is happy add ID to list
@@ -142,11 +142,7 @@ def HappyPlayslistFull():
     createHappyPlaylist(results)
 
 def main():
-    results = getRecentTracks()
-    createHappyPlaylist(results)
-    """printRecentTracks(results)
-    avValence = getFeatures(results)
-    alterMood(avValence)"""
+    print(spotifyReadFull())
 
 
 if __name__ == '__main__':

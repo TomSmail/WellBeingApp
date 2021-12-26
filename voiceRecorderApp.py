@@ -12,6 +12,8 @@ import notify2
 
 class voiceRecorder(App):
 
+
+
     def build(self):
 
         # Setting up grids and logo
@@ -33,6 +35,8 @@ class voiceRecorder(App):
 
         return self.window
 
+
+
     def buttonCall(self, instance):
 
         # Recording Audio
@@ -50,6 +54,8 @@ class voiceRecorder(App):
         notification.set_urgency(notify2.URGENCY_NORMAL)
         notification.set_timeout(2000)
         notification.show()
+
+
 
 if __name__ == "__main__":
     voiceRecorder().run()
