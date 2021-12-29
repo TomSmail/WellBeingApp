@@ -10,13 +10,7 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.preprocessing import OrdinalEncoder
 from xgboost import XGBRegressor
 import pickle
-# This is the number of samples of audio a second 
-# this calcualtes the short-time fourier transform - which is used to determine the frequency and content of sections of a sound wave. 
-# Mel-frequency cepstral coefficients (MFCCs)
-# finds the different pitches
-# creates a spectorgram of all of the mel values from the spectrum
-# finds average spectral contrast 
-# find the average flatness of the entire spectrum
+
 
 
 
@@ -106,11 +100,9 @@ def predictValue(fileName):
     features = pd.DataFrame(features, [0]) # Gets data in same format as "pd.read_csv"
     prediction = Model1.predict(features)
     print(prediction)
+    
     return(prediction)
 
-
-
-        
 
 
 if __name__ == '__main__':

@@ -1,3 +1,4 @@
+
 import SpotifyAPIMood2 as sam2
 import instagramAPI2 as ia2
 import EmotionRecognition2 as er2
@@ -9,6 +10,7 @@ import time
 import requests
 from bs4 import BeautifulSoup
 import random
+import settingsTool as st1
 
 
 # This is to allow for a timeout exception to be thrown
@@ -59,7 +61,8 @@ def gatherData(backEndTesting, TrainingModel):
 
 
 
-def interpretData(likesWeight = 1, commentsWeight = 1, spotifyWeight = 1, voiceWeight = 1): 
+def interpretData(): 
+    settings = st1.readSetting()
 
     # Opens csv and interprets the latest data from each column
     file = open('trainingData.csv', 'r') 
@@ -67,9 +70,8 @@ def interpretData(likesWeight = 1, commentsWeight = 1, spotifyWeight = 1, voiceW
     rows = []
     for row in reader:
         rows.append(row)
-    
     # Each data source has a different weight to change how it effects the mood
-    mood = float(rows[-1][1]*likesWeight) + float(rows[-1][2]*commentsWeight) + float(rows[-1][3]*spotifyWeight) + float(rows[-1][4]*voiceWeight)
+    mood = (float(rows[-1][1])*float(settings["likesWeight"])) + (float(rows[-1][2])*float(settings["commentsWeight"])) + (float(rows[-1][3])*float(settings["spotifyWeight"])) + (float(rows[-1][4])*float(settings["voiceWeight"]))
     print(mood)
     return mood
 
