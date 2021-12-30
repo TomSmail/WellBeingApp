@@ -26,7 +26,7 @@ def gatherData(backEndTesting, TrainingModel):
 
     # Initialises signal function to throw an error if "try" takes too long
     signal.signal(signal.SIGALRM, handler) 
-    signal.alarm(30)  
+    signal.alarm(60)  
     try:
 
         # Runs Instagram data gathering
@@ -70,6 +70,7 @@ def interpretData():
     rows = []
     for row in reader:
         rows.append(row)
+
     # Each data source has a different weight to change how it effects the mood
     mood = (float(rows[-1][1])*float(settings["likesWeight"])) + (float(rows[-1][2])*float(settings["commentsWeight"])) + (float(rows[-1][3])*float(settings["spotifyWeight"])) + (float(rows[-1][4])*float(settings["voiceWeight"]))
     print(mood)

@@ -37,6 +37,7 @@ class MainWindow(Screen):
 
     def getSliderValue(self, *args):
         self.slide_number.text = str(args[1])
+
     pass
 
 class SecondWindow(Screen):
@@ -60,6 +61,7 @@ class SecondWindow(Screen):
 
 
 class WindowManager(ScreenManager):
+    
     pass
 
 
