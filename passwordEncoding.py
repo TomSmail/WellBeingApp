@@ -10,6 +10,7 @@ def getUsernameAndPassword():
     clientInfo  = {"username": "", "password": ""}
     clientInfo["username"] = input("Please input your username: ")
     clientInfo["password"] = input("Please input your password: ")
+    
     return clientInfo
 
 
@@ -37,6 +38,7 @@ def passwordEncryption(clientInfo):
     encodedPassword = clientInfo["password"].encode()
     tool = Fernet(key)
     encryptedPassword = tool.encrypt(encodedPassword)
+
     return encryptedPassword
 
 
@@ -50,6 +52,7 @@ def passwordDecryption(encryptedPassword):
     tool = Fernet(key)
     decryptedPassword = tool.decrypt(encryptedPassword)
     originalPassword = decryptedPassword.decode()
+
     return originalPassword
 
 
@@ -75,6 +78,7 @@ def getDetailsFromFile():
     passwordFile = open("Code/passwordFile.key", "rb")
     encryptedPassword = passwordFile.read()
     passwordFile.close()
+
     return username, encryptedPassword
 
 
@@ -82,6 +86,7 @@ def getDetailsFromFile():
 def remoteDecryption():
     encryptedPassword = getDetailsFromFile()[1]
     originalPassword = passwordDecryption(encryptedPassword)
+
     return originalPassword
 
 

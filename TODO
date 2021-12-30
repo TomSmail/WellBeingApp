@@ -45,6 +45,13 @@
 12. Create way to get Spotify Happy Vibes playlist without any happy songs in past 50 songs
 13. Get Multitasking working with kivy
   - Need to be able to run multiple threads at once
+14. Want to make a way to change settings in a settings file
+  - settings file should be a dictionary
+  - need to be able to get and set values
+  - want 3 paramaters to pass into the function 
+  - bool for set/get, (if set is true - > ) value of set, dictionary id
+
+
 
 
   

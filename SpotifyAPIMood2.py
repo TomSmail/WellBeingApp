@@ -135,6 +135,8 @@ def spotifyReadFull():
     alterMood(avValence)
     return avValence
 
+
+
 def HappyPlayslistFull():
 
     # Creates a Happy Playlist

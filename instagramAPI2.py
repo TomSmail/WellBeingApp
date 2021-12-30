@@ -38,7 +38,7 @@ def getPostLikes(bot):
         now = bot.get_your_medias(as_dict=True)[i]["taken_at"]
         print("This is the number of likes", likeUserIDs)
         print("Post number", i + 1, "has", len(likeUserIDs), "likes.")
-        posts.append({"ID": media[i], "TIME": now, "LIKE_COUNT": len(likeUserIDs),"COMMENTS": comments})#["Post", i] = len(likeUserIDs)
+        posts.append({"ID": media[i], "TIME": now, "LIKE_COUNT": len(likeUserIDs),"COMMENTS": comments})
     print(posts)
     return posts
 

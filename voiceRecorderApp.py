@@ -10,6 +10,7 @@ import RecordingData as rd1
 import notify2
 
 
+
 class voiceRecorder(App):
 
 
