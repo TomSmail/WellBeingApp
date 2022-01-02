@@ -2,12 +2,6 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.label import Label
-from kivy.uix.image import Image
-from kivy.uix.button import Button
-from kivy.uix.slider import Slider
-from kivy.animation import Animation
 import audioRecording as ar1
 import RecordingData as rd1
 import notify2
@@ -42,6 +36,7 @@ class MainWindow(Screen):
 
 class SecondWindow(Screen):
 
+    # These allow for the return of the slider values
     def likesSliderValue(self, *args):
         self.likes_number.text = str(args[1])
 
@@ -54,6 +49,7 @@ class SecondWindow(Screen):
     def voiceSliderValue(self, *args):
         self.voice_number.text = str(args[1])
 
+    # Saving the settings from slider values
     def settingsSave(self):
         st1.writeSetting(likesWeight = float(self.likes_number.text), commentsWeight = float(self.comments_number.text), spotifyWeight = float(self.spotify_number.text), voiceWeight = float(self.voice_number.text))
 
@@ -72,9 +68,6 @@ class voiceApplication(App):
 
     def build(self):
         return kv
-    
-    
-
 
 
 if __name__ == "__main__":
