@@ -20,9 +20,7 @@ class Timeout(Exception):
 def handler(sig, frame):
     raise Timeout
 
-
-
-def gatherData(backEndTesting, TrainingModel): 
+def gatherData(backEndTesting = False, TrainingModel = False, filename = "audio2.wav"): 
 
     # Initialises signal function to throw an error if "try" takes too long
     signal.signal(signal.SIGALRM, handler) 
@@ -52,7 +50,7 @@ def gatherData(backEndTesting, TrainingModel):
 
     # Creates a new row in csv file and adds all the important data to it
     # This inclues: Instagram (likes and comments), Spotify and Emotion Recognition
-    newRow = {"TIME": time.time() ,"INSTAGRAM_l": likes, "INSTAGRAM_c": comments, "SPOTIFY_v": sam2.spotifyReadFull(), "VOICE_e": er2.predictValue("audio2.wav")[0], "USER_i": userInput } 
+    newRow = {"TIME": time.time() ,"INSTAGRAM_l": likes, "INSTAGRAM_c": comments, "SPOTIFY_v": sam2.spotifyReadFull(), "VOICE_e": er2.predictValue(filename)[0], "USER_i": userInput } 
     headers = ["TIME","INSTAGRAM_l","INSTAGRAM_c","SPOTIFY_v","VOICE_e", "USER_i"]
     file = open('trainingData.csv', 'a') 
     writer = csv.DictWriter(file, headers)
@@ -77,13 +75,14 @@ def interpretData():
     return mood
 
 
+
 def outputActions(mood):
 
     # Each mood level trigers a different output.
     if mood >= 1:
 
         # Best mood - nothing needs to be done
-        message = "Keep up the positivity!"
+        message = "Keep up the positivity and get enough sleep!"
         return message
 
     elif mood >= -1 and mood < 1:
@@ -108,11 +107,26 @@ def outputActions(mood):
         print("quote:", quote)
         message = quote
         return message
+    
+    else:
         
+        # If mood is not an integer
+        message = "There was an error with the mood value"
+        return message
+        
+
+
+
+def backEndWorkflow(filename):
+    gatherData(filename = filename)
+    mood = interpretData()
+    outputActions(mood)
+
 
 
 def main():
     interpretData()
+    
 
 
 def training():
@@ -125,6 +139,7 @@ def training():
     else: 
         trainingModel = False
     gatherData(backEndTest, trainingModel)
+
 
 
 if __name__ == '__main__':
