@@ -107,5 +107,5 @@ def predictValue(fileName):
 
 if __name__ == '__main__':
     print("Running Programn")
-    predictValue("audio.wav")
+    predictValue("/home/tomsmail/Documents/0SCHOOL/A-Level/Comp Sci/NEA/Code/audioUpload/audio1.wav")
     

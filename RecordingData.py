@@ -125,7 +125,7 @@ def backEndWorkflow(filename):
 
 
 def main():
-    interpretData()
+    backEndWorkflow("/home/tomsmail/Documents/0SCHOOL/A-Level/Comp Sci/NEA/Code/audioUpload/audio1.wav")
     
 
 
@@ -141,10 +141,10 @@ def training():
     gatherData(backEndTest, trainingModel)
 
 
-
 if __name__ == '__main__':
     print("Running Programn")
     main()
+
 
 
 # I want to be able to ask for how a user is feeling then insert this value along with the values from the different APIs into a new row of a CSV file. It should take the time taken for the test to be run as its primary key
