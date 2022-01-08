@@ -1,14 +1,14 @@
+from RecordingData import backEndWorkflow
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
 import os
-import sys 
-#import RecordingData as rd1
-
+import sys
 
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000
 CORS(app)
+print(sys.path)
 
 
 allowed = [".mp3", ".wav", ".flac", ".m4a", ".MP3"]
@@ -29,8 +29,9 @@ def run_script():
     print(request.files)
     file = request.files['static_file']
     if os.path.splitext(file.filename)[1] in allowed:
-        file.save(os.path.join("/home/tomsmail/Documents/0SCHOOL/A-Level/Comp Sci/NEA/Code/audioUpload", file.filename))
-        #rd1.backEndWorkflow(file)
+        filepath = os.path.join("/home/tomsmail//Documents/0SCHOOL/A-Level/Comp Sci/NEA/audioUpload2", file.filename)
+        file.save(filepath)
+        backEndWorkflow(filepath)
 
     else:  
         resp = {"success": False, "response": "Illegal File"}
