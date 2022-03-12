@@ -1,4 +1,5 @@
 from RecordingData import backEndWorkflow
+from instagramAPI2 import instagramEmotion
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
 import os
@@ -24,21 +25,22 @@ def get_message():
 
 @app.route('/run_script', methods=['POST'])
 def run_script():
-
-    print("Got request for /run_script")
+    print(instagramEmotion())
+    """print("Got request for /run_script")
     print(request.files)
     file = request.files['static_file']
     if os.path.splitext(file.filename)[1] in allowed:
+        
         filepath = os.path.join("/home/tomsmail//Documents/0SCHOOL/A-Level/Comp Sci/NEA/audioUpload2", file.filename)
         file.save(filepath)
-        backEndWorkflow(filepath)
+        message = backEndWorkflow(filepath)
 
     else:  
         resp = {"success": False, "response": "Illegal File"}
         return jsonify(resp), 312
-    
-    resp = {"success": True, "response": "File has been saved!"}
-    return jsonify(resp), 200
+    #message = "TEST"
+    resp = {"success": True, "response": message}
+    return jsonify(resp), 200"""
 
 
 

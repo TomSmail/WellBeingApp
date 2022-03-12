@@ -14,8 +14,9 @@ function uploadFile(form){
 
         if (request.status == 200) {
           // Succesful Upload
-          output.innerHTML = "Uploaded!";
-          console.log(request.response)
+          message = request.status + request.response
+          console.log(message)
+          output.innerHTML = message;
   
         } 
 
@@ -34,8 +35,10 @@ function uploadFile(form){
         } 
         
         else{
-          // Return Specific Error 
-          output.innerHTML = request.status;
+          // Return Specific Error
+          message = request.status + request.response
+          console.log(message)
+          output.innerHTML = message;
 
         }
       };

@@ -144,7 +144,7 @@ def HappyPlayslistFull():
     createHappyPlaylist(results)
 
 def main():
-    print(spotifyReadFull())
+    print(HappyPlayslistFull())
 
 
 if __name__ == '__main__':

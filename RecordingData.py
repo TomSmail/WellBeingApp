@@ -34,6 +34,10 @@ def gatherData(backEndTesting = False, TrainingModel = False, filename = "audio2
     except Timeout:
         likes = 0
         comments = 0
+    """except:
+        likes = 0
+        comments = 0
+        print("Skipping Instagram")"""
 
     # This code is semi-outdated as I am no longer predicting total mood using ML
     if backEndTesting:

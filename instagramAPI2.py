@@ -13,14 +13,18 @@ def setupCheckCookies():
 
     # Removes erroneous JSON file
     try:
-        remove("config/tomsmailspythonbot_uuid_and_cookie.json")
+        remove("/home/tomsmail/Documents/0SCHOOL/A-Level/Comp Sci/NEA/config/tomsmailspythonbot_uuid_and_cookie.json")
     except:
         print("Cookie does not exist, continuing with prorgramn.")
 
     # Login to Instagram and create instance
+    
+    time.sleep(1)
     bot = Bot()
     bot.login(username= getDetailsFromFile()[0], password = remoteDecryption()) 
-    return bot    
+    return bot   
+
+    
 
 
 
@@ -47,7 +51,7 @@ def getPostLikes(bot):
 def writeNewPostToCSV(posts):
 
     # Open csv file and convert to DataFrame
-    df = pd.read_csv("Code/postFile.csv")
+    df = pd.read_csv("postFile.csv")
     print(df)
     newposts = []
     listOfID = df.ID.to_list()
@@ -59,7 +63,7 @@ def writeNewPostToCSV(posts):
     print("newpost", newposts)
 
     # Add new posts to csv
-    with open("Code/postFile.csv", 'a', newline='') as write:
+    with open("postFile.csv", 'a', newline='') as write:
         fieldNames = ["ID", "TIME", "LIKE_COUNT", "COMMENTS"]
         rowWriter = DictWriter(write, fieldNames)
         for i in range(len(newposts)):
@@ -71,7 +75,7 @@ def writeNewPostToCSV(posts):
 def commentReading():
 
     # Create list of comments from posts
-    df = pd.read_csv("Code/postFile.csv")
+    df = pd.read_csv("postFile.csv")
     listOfComments = df.COMMENTS.to_list()
     print(listOfComments)
     commentsForReading = []
@@ -95,7 +99,7 @@ def commentReading():
 def likesReading():
 
     # Get all likes from csv
-    df = pd.read_csv("Code/postFile.csv")
+    df = pd.read_csv("postFile.csv")
     allPostLikes = df.LIKE_COUNT.to_list()
     print(allPostLikes)
     
@@ -149,4 +153,4 @@ def instagramEmotion():
 
 if __name__ == '__main__':
     print("----Running Programn----")
-    print(commentReading())
+    print(instagramEmotion())
