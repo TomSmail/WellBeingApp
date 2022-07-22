@@ -1,0 +1,58 @@
+1. Fix Emotion Recognition, Idetify issues and create csv file for storing the data for each voice
+ - Write Data from files and create csv with y values and x values stored as one
+ - Read the Data from the csv
+ - Remove Rows with no data
+ - split data into training and testing
+ - build model 
+ - train model using xgboost (import)
+ - use model to create predictions and find mean error
+2. Check Spotify Function still works as intended
+3. Check Instagram Function still works as intended
+  - Research how Instagram is blocking my algorithms
+  - Find legal way around
+4. Stadardise mood so it can be interpreted from the TraingData.csv file ie put all moods on same scale instead of wide variety of different floats and integers. 
+  -"INSTAGRAM_l": ia1.readLikes(), "INSTAGRAM_c": ia1.commentReading(), "SPOTIFY_v": sam2.spotifyReadFull(), "VOICE_e": er2.predictValue("audio1.wav")
+  - Change likes to - likes and + likes, 
+  - Change comments to range of -2, 2 This is already done by this function so it should be fine. 
+  - Change spotify valence to -2, 2 scale Can play around with the weighting of this later!
+  - Where -2 is very bad, -1 is bad, 0 is neutral, 1 is good, 2 is very good.
+5. Write an exception handler for instagram
+  - I need to know that instagram will not hold up the entire process
+  - I will instead replace the two instagram values with a zero instead of putting NA in their position.
+6. Create a way to interpret the data so that a single mood value can be extracted
+  - Add up all the values
+  - Maybe add a way to change weightings?
+7. Make a way to record audio
+  - needs to delete past recording and make a new recording
+8. Make a kivy app
+9. Write algorithm to, based on users current emotion, do certain things
+  - eg make happy playlist if the user is sad. 
+  - other things can be worked out later
+  - selection of if statements - > take output of mood and see if it is greater / less than certain values
+  - then respond to this with 
+10. Write Proper Comments on all of the different pieces of code
+  - audioRecording
+  - ER2
+  - PsswrdEncoding
+  - Instagram
+  - Spotify2
+  - RecordingData
+  - App
+11. Fix Instagram code / make it cleaner
+  - Each function should be relatively selfcontained
+  - for comparing use dataframe, it needs to be updated
+  - then just compare the latest posts ie ones that are less than two days old with all time posts
+12. Create way to get Spotify Happy Vibes playlist without any happy songs in past 50 songs
+13. Get Multitasking working with kivy
+  - Need to be able to run multiple threads at once
+14. Want to make a way to change settings in a settings file
+  - settings file should be a dictionary
+  - need to be able to get and set values
+  - want 3 paramaters to pass into the function 
+  - bool for set/get, (if set is true - > ) value of set, dictionary id
+
+
+
+
+  
+  

@@ -1,0 +1,119 @@
+
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+
+    <!--  Import Framework -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"> </script>
+
+    <title>Mood Web App</title>
+
+    <style>
+
+        body{
+            background-color: black;
+        }
+
+        .custom-button{     
+            padding: 5px;
+            color: black;
+            background-color: #00801A;
+            border-radius: 7px;
+            border: 2px solid #024e12;
+            font-size: 20px
+        }
+
+        .custom-button:hover{
+            background-color: #1d8f33;
+            cursor: pointer;
+        }
+
+        .custom-text{
+            color: white;
+            margin: 20px;
+            font-family: sans-serif;
+        }
+
+        .input-button{
+            cursor: pointer;
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        .input-button + label {
+            font-family: sans-serif;
+            padding: 10px;
+            color: black;
+            background-color: #00801A;
+            border-radius: 7px;
+            border: 2px solid #024e12;
+            display: inline-block;
+            font-size: 30px
+        }
+
+        .input-button + label:hover {
+            font-family: sans-serif;
+            padding: 10px;
+            color: black;
+            background-color: #00801A;
+            border-radius: 7px;
+            border: 2px solid #024e12;
+            display: inline-block;
+            background-color: #1d8f33;
+            cursor: pointer;
+
+        }
+
+        .postition-main{
+            padding-top: 40%;
+            text-align: center;
+
+        }
+
+        .postition-bottom-left{
+            bottom: 15px;
+            padding-left: 30px;
+            position: fixed;
+
+        }
+  
+      
+
+    </style>
+
+    
+
+  </head>
+
+  <body>
+
+    <form enctype = "multipart/form-data" onsubmit="return false;" >
+
+      <div class="postition-main">
+
+          <div class="custom-text">Please select an audio file to upload to the server:</div>
+
+          <input id="file" type="file" name="static_file" accept="audio/*" class="input-button"/>
+          <label for="file">File Select</label>
+
+          <br/><br/><br/>
+
+          <button id="upload-button" onclick="uploadFile(this.form)" class="custom-button"> Upload </button>
+      </div>
+
+    </form>
+
+    <!--  Handles response from js -->
+    <div class="postition-bottom-left">
+        <div class="custom-text"> Response From Server: </div>
+        <div id="js_response" class="custom-text"> </div>
+    </div>
+    
+    <script type="text/javascript" src="/static/app.js"></script>
+    
+  </body>
+</html>

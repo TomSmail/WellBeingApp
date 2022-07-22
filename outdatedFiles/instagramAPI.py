@@ -27,15 +27,11 @@ def getPostLikes(bot):
     media = bot.get_your_medias(as_dict=False)
     print (media)
     posts = []
-    choice = input("Do you want the list of like users? y/n :")
     for i in range(len(media)):
         likeUserIDs = bot.get_media_likers(media[i])
         comments = bot.get_media_comments(media[i], only_text = True)
         now = bot.get_your_medias(as_dict=True)[i]["taken_at"]
         print("This is the number of likes", likeUserIDs)
-        if choice == "y":
-            for j in range(len(likeUserIDs)):
-                print("These people liked your post:", bot.get_username_from_user_id(likeUserIDs[j]))
         print("Post number", i + 1, "has", len(likeUserIDs), "likes.")
         posts.append({"ID": media[i], "TIME": now, "LIKE_COUNT": len(likeUserIDs),"COMMENTS": comments})#["Post", i] = len(likeUserIDs)
     print(posts)
@@ -44,15 +40,15 @@ def getPostLikes(bot):
 
 
 def writeNewPostToCSV(posts):
-    df = pd.read_csv("postFile.csv")
+    df = pd.read_csv("Code/postFile.csv")
     print(df)
     newposts = []
     listOfID = df.ID.to_list()
     for i in range(len(posts)):
-        if posts[i]["TIME"] >= time.time() - 86400 and posts[i]["ID"] not in listOfID: # checks to see if a post is more than a day old and not in the dataframe already
+        if posts[i]["ID"] not in listOfID: 
             newposts.append(posts[i])
     print("newpost", newposts)
-    with open("postFile.csv", 'w', newline='') as write:
+    with open("Code/postFile.csv", 'a', newline='') as write:
         fieldNames = ["ID", "TIME", "LIKE_COUNT", "COMMENTS"]
         rowWriter = DictWriter(write, fieldNames)
         rowWriter.writeheader()
@@ -64,7 +60,7 @@ def writeNewPostToCSV(posts):
 
 
 def commentReading():
-    df = pd.read_csv("postFile.csv")
+    df = pd.read_csv("Code/postFile.csv")
     listOfComments = df.COMMENTS.to_list()
     print(listOfComments)
     commentsForReading = []
@@ -73,7 +69,7 @@ def commentReading():
         if time.time() - 172800 <= df["TIME"][row]: # if a post is less that 2 days old add the comments to a list (commentsForReading)
             commentsForReading.append(listOfComments[row])
         else:
-            totalEmotion = 0
+            totalEmotion += 0
     print(commentsForReading)
     for comment in range(len(commentsForReading)):
         commentEmotion = emotion.get_emotion(commentsForReading[comment])
@@ -84,7 +80,7 @@ def commentReading():
 
 
 def likesReading(posts):
-    df1 = pd.read_csv("postFile.csv")
+    df1 = pd.read_csv("Code/postFile.csv")
     allPostLikes = []
     for i, post in enumerate(posts):
         allPostLikes.append(post["LIKE_COUNT"])
@@ -96,6 +92,17 @@ def likesReading(posts):
         averageNewLikes = (sum(newLikes)/ len(newLikes))
         averageAllLikes = (sum(allPostLikes)/ len(allPostLikes))
         likesEmotion = (averageNewLikes - averageAllLikes)
+        if likesEmotion >= 0.2*averageAllLikes: # stardises results
+            likesEmotion = 2
+        elif likesEmotion >= 0.05*averageAllLikes and likesEmotion <= 0.2*averageAllLikes:
+            likesEmotion = 1
+        elif likesEmotion <= 0.05*averageAllLikes and likesEmotion >= -(0.05*averageAllLikes): 
+            likesEmotion = 0
+        elif likesEmotion <= -0.05*averageAllLikes and likesEmotion >= -(0.2*averageAllLikes):
+            likesEmotion = -1
+        elif likesEmotion <= -(0.2*averageAllLikes):
+            likesEmotion = -2
+
     return likesEmotion
 
 
@@ -114,9 +121,7 @@ def readLikes():
 def main():
     bot = setupCheckCookies()
     posts = getPostLikes(bot)
-    writeNewPostToCSV(posts)
-    print(commentReading())
-    print(likesReading(posts))
+    
 
 
 if __name__ == '__main__':

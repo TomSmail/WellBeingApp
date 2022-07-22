@@ -1,7 +1,7 @@
 import pyaudio
 import wave
 import pickle
-import EmotionRecognition 
+import Code.outdatedFiles.EmotionRecognition as EmotionRecognition 
 from xgboost import XGBRegressor
 import numpy as np
 

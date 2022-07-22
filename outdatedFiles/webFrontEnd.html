@@ -1,0 +1,176 @@
+<!--<style>
+
+</style>
+
+<html>
+
+    <header>
+            Voice Recorded Web App
+    </br></br>
+    </header>
+
+    <body>
+
+
+        <form id=”form” action=”/upload” method=”post” enctype=”multipart/form-data”>
+
+            <input type="file" accept="audio/*" capture id="recorder" size= "5">
+            <input type=”submit” id=”submit” name=”submit” value= ”Upload">
+
+        </form>
+
+
+
+        <script>
+            window.onload = function {
+                var myForm = document.getElementsById("form")
+                form.onsubmit = function(event) {
+
+            const recorder = document.getElementById("recorder");
+            const submit = document.getElementById("submit")
+
+            recorder.addEventListener("change", function(e) {
+                //const file = e.target.files[0];
+                const url = URL.createObjectURL(file);
+                const files = file.files;
+                
+            var formData = new FormData();  
+            formData.append("file", files[0], files[0].name);
+
+            var request = new XMLHttpRequest();
+
+                request.open("POST", "/upload", ture );
+                reqest.onload = function(){
+                    
+                    if(request.status == 200){
+
+                        alert("Audio file sent!")
+
+                    } else{
+
+                        alert("Audio file failed to send!")
+                        
+                    }
+                    
+                }
+                request.send(formData);
+                }
+            }
+        });
+
+</script>
+    </body>
+
+
+
+
+
+    <body>
+
+    <form id="myForm" action="http://localhost:80/upload" method="post" enctype="multipart/form-data" >
+
+        <div>
+            <label for="file">Choose file to upload</label>
+            <input type="file" id="file" name="file" accept="audio/*" multiple >
+        </div>
+
+
+    <br/><br/>
+
+    <input type="submit" id="submit" name="submit" value= "Upload" >
+
+    </form>
+
+    </body>
+
+    <script>
+
+        window.onload = function() {
+
+            var myForm = document.getElementById("myForm");
+        
+            myForm.onsubmit = function(event) {
+        
+            event.preventDefault;
+        
+            var myFile = document.getElementById("myFile");
+            
+            var mySubmit = document.getElementById("submit");
+            
+            var files = myFile.files;
+            
+            var formData = new FormData();
+
+            formData.append("myFile", files[0], files[0].name);
+            
+            var xhr = new XMLHttpRequest();
+            
+            xhr.open("POST", "http://localhost:80/upload", true);
+            
+            xhr.onload = function () {
+                
+                if (xhr.status === 200) {
+                
+                alert("File successfully uploaded")
+                
+                } else {
+                
+                alert("File upload failed!");
+                
+                }
+                
+                };
+                
+                xhr.send(formData);
+                
+                }
+                
+                };
+
+    </script>
+
+
+</html>-->
+
+
+<html>
+
+    <head>
+
+
+    <title>File Upload using XHR</title>
+        <style>
+            #custom-button{
+                cursor: pointer;
+                padding: 10px;
+                color: black;
+                background-color: #00801A;
+                border-radius: 7px;
+                border: 2px solid #024e12;
+            }
+            #custom-button:hover{
+                background-color: rgb(6, 207, 16);
+                cursor: crosshair;
+            }
+
+            #custom-text{
+                margin: 20px;
+                font-family: sans-serif;
+            }
+        </style>
+    </head>
+    <body>
+
+        <input type="file" id="file" name="file" accept="audio/*">
+        <button type = "button" id = "custom-button"> Upload a file </button>
+
+        <span id = "custom-text">Empty</span>
+
+
+
+    </body>
+
+
+
+
+</html>

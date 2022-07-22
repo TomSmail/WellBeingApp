@@ -1,0 +1,161 @@
+WindowManager:
+    MainWindow:
+    SecondWindow:
+
+<MainWindow>:
+    name: "main"
+
+    slide_number: length_time
+
+    GridLayout:
+        cols:1 
+        
+        Image:
+            source: 'logo.png'
+            size: self.texture_size
+
+        Label:
+            text: "How long do you want to talk for? :" 
+            font_size: 34
+            padding: 2,2
+
+        Label:
+
+            id: length_time
+            text: "30"
+
+        Slider:
+            value: 30
+            min: 10
+            max: 50
+            step: 5
+            padding: 32
+            on_value: root.getSliderValue(*args)
+            cursor_image: "dot.png"
+            cursor_size: 30,30
+            
+
+        GridLayout:
+
+            cols: 2
+
+            Button:
+                size_hint: (.5,.4) 
+                background_color: "00801A" 
+                background_normal: ""
+                text: "Talk"
+                font_size: 34
+                on_release: root.buttonCall()
+
+            Button:
+                size_hint: (.5,.4) 
+                background_color: "00801A" 
+                background_normal: ""
+                text: "Settings"
+                font_size: 34
+                on_release:
+                    app.root.current = "second" 
+                    root.manager.transition.direction = "up"
+
+
+<SecondWindow>:
+    name: "second"
+
+    likes_number: l_number
+    comments_number: c_number
+    spotify_number: s_number
+    voice_number: v_number
+    GridLayout:
+        cols: 1
+        Label:
+            font_size: 34
+            text: "Settings"
+        GridLayout:
+            cols: 4
+
+            Label:
+                id: l_number
+                text: "1"
+            Label:
+                id: c_number
+                text: "1"
+            Label:
+                id: s_number
+                text: "1"
+            Label:
+                id: v_number
+                text: "1"
+
+        GridLayout:
+            cols: 4
+
+
+            Slider:
+                value: 1
+                min: 0
+                max: 2
+                step: 0.25
+                orientation: "vertical"
+                on_value: root.likesSliderValue(*args)
+                cursor_image: "heart.png"
+                cursor_size: 30,30
+            
+            Slider:
+                value: 1
+                min: 0
+                max: 2
+                step: 0.25
+                orientation: "vertical"
+                on_value: root.commentsSliderValue(*args)
+                cursor_image: "comment.png"
+                cursor_size: 30,30
+
+            Slider:
+                value: 1
+                min: 0
+                max: 2
+                step: 0.25
+                orientation: "vertical"
+                on_value: root.spotifySliderValue(*args)
+                cursor_image: "spotify.png"
+                cursor_size: 30,30
+
+            Slider:
+                value: 1
+                min: 0
+                max: 2
+                step: 0.25
+                orientation: "vertical"
+                on_value: root.voiceSliderValue(*args)
+                cursor_image: "voice.png"
+                cursor_size: 25,25
+                
+        GridLayout:
+            cols: 2
+
+            Label:
+
+                text:""
+            Label:
+
+                text:""
+            Button:
+                text: "Go Back"
+                font_size: 34
+                size_hint: (.5,.4) 
+                background_color: "00801A" 
+                background_normal: ""
+                on_release:
+                    app.root.current = "main"
+                    root.manager.transition.direction = "down"
+            
+            
+            Button:
+                text: "Save"
+                font_size: 34
+                size_hint: (.5,.4) 
+                background_color: "00801A" 
+                background_normal: ""
+                on_release: root.settingsSave()
+        
+            

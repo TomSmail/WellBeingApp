@@ -33,7 +33,7 @@ def load_data(test_size=0.1): #this function is taken from the place i got the v
     emotionsWanted = {"angry","calm","sad","neutral","happy"}
     XData = []
     yData = []
-    for file in glob.glob("../data/Actor_*/*.wav"):       
+    for file in glob.glob("./data/Actor_*/*.wav"):       
         basename = os.path.basename(file) # get the base name of the audio file        
         emotion = filenameEmotions[basename.split("-")[2]] # get the emotion label, the last value in the file name corresponds to a dictionary value in filenameEmotions
         if emotion in emotionsWanted: # only certain emotions are needed so we cut off others          
@@ -41,11 +41,12 @@ def load_data(test_size=0.1): #this function is taken from the place i got the v
             XData.append(features) # add the speech features to the data
             yData.append(emotion) # will make up target data in machine learning model
         else:
-            continue        
+            continue   
+    print(XData)     
     label_encoder = LabelEncoder()
     label_encoder = label_encoder.fit(yData)
     label_encoded_y = label_encoder.transform(yData)
-    splitData = train_test_split(np.array(XData), label_encoded_y, test_size=test_size, random_state=7)
+    splitData = train_test_split(XData, label_encoded_y, test_size=test_size, random_state=7)
     return splitData  # split the data to training and testing and return it
 
 

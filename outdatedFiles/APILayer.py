@@ -2,7 +2,7 @@ from flask import *
 import json
 import time
 import SpotifyAPIMood2 as sam2
-import instagramAPI as ia1
+import Code.outdatedFiles.instagramAPI as ia1
 
 app = Flask(__name__)
 
