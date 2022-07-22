@@ -3,7 +3,7 @@ from spotipy.oauth2 import SpotifyOAuth
 import pandas as pd
 
 # Authentication process using Spotipy
-sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope = "user-read-recently-played,playlist-modify-private,playlist-modify-public",client_id='3b17a2138f654ee2af635167b3a14e3a', client_secret='26309b0980754c04992edc602e9ac31e', redirect_uri = "http://localhost:8080"))
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(scope = "user-read-recently-played,playlist-modify-private,playlist-modify-public",client_id='3b17a2138f654ee2af635167b3a14e3a', client_secret='CLIENT_SECRET', redirect_uri = "http://localhost:8080"))
 
 def getRecentTracks():
 
