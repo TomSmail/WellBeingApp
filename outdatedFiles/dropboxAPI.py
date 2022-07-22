@@ -1,8 +1,8 @@
 import dropbox
 import EmotionRecognition as er
-db = dropbox.Dropbox('-9EY8VU6xfEAAAAAAAAAAd-AyKKqeEYy4jY7PV426PMBzFQeR9_f1RPbw5ju_O28')
-appSecret = "rnt2zq33akm0iiy"
-appKey = "gl99chamr35370o"
+db = dropbox.Dropbox('SECRET')
+appSecret = ""
+appKey = ""
 
 def pullVoiceRecording():
     for file in db.files_list_folder('').entries:
